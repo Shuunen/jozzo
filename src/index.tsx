@@ -1,5 +1,5 @@
 import { render } from 'preact'
-import logo from './assets/preact.svg'
+import { ReactComponent as Logo } from './assets/bucket-fillable.svg'
 import { Resource } from './components/resource'
 import './style.css'
 
@@ -7,7 +7,7 @@ function App () {
   return (
     <>
       <a href="https://preactjs.com" rel="noreferrer" target="_blank">
-        <img alt="Preact logo" height="160" src={logo} width="160" />
+        <Logo />
       </a>
       <h1>Get Started building Vite-powered Preact Apps </h1>
       <section>
