@@ -45,7 +45,7 @@
     "lint": "tsc --noEmit && echo tsc success && eslint --cache --fix --ext .js,.ts,.tsx . && echo lint success",
     "postversion": "git push && git push --tags && npm publish",
     "preversion": "pnpm check",
-    "preview": "vite preview",
+    "serve": "pnpm build && vite preview",
     "test": "echo no test yet && echo test success"
   },
   "type": "module",
