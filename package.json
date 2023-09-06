@@ -3,7 +3,8 @@
   "author": "Romain Racamier-Lafon <romain.racamier@gmail.com>",
   "bugs": "https://github.com/Shuunen/jozzo/issues",
   "dependencies": {
-    "preact": "10.17"
+    "preact": "10.17",
+    "shuutils": "7.3"
   },
   "description": "A color sort puzzle game",
   "devDependencies": {

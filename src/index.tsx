@@ -1,33 +1,49 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 import { render } from 'preact'
-import { ReactComponent as Logo } from './assets/bucket-fillable.svg'
-import { Resource } from './components/resource'
+import { useState } from 'preact/hooks'
+import { pickOne } from 'shuutils'
+import { Bottle } from './components/bottle'
 import './style.css'
+import { colors, type Color } from './utils/colors'
+
+
+function getColors (nbColors = 5) {
+  const bottle: Color[] = []
+  for (let index = 0; index < nbColors; index += 1) {
+    const color = pickOne(Array.from(colors))
+    bottle.push(color)
+  }
+  // eslint-disable-next-line etc/no-assign-mutated-array
+  return bottle.sort()
+}
+
+function getBottles (nbBottles = 6) {
+  const bottles: Color[][] = []
+
+  for (let index = 0; index < nbBottles; index += 1)
+    bottles.push(getColors())
+
+  return bottles
+}
 
 function App () {
+  const [selectedBottle, setSelectedBottle] = useState<number>(-1)
+  const [bottles] = useState<Color[][]>(getBottles())
+
+  function onClick (event: Event) {
+    const element = event.target as HTMLElement // eslint-disable-line @typescript-eslint/consistent-type-assertions
+    const index = Number(element.dataset.index)
+    if (Number.isNaN(index)) return
+    const selected = selectedBottle === index ? -1 : index
+    setSelectedBottle(selected)
+  }
+
   return (
-    <>
-      <a href="https://preactjs.com" rel="noreferrer" target="_blank">
-        <Logo class="w-20 text-blue-300"/>
-      </a>
-      <h1>Get Started building Vite-powered Preact Apps </h1>
-      <section>
-        <Resource
-          description="If you're new to Preact, try the interactive tutorial to learn important concepts"
-          href="https://preactjs.com/tutorial"
-          title="Learn Preact"
-        />
-        <Resource
-          description="If you're coming from React, you may want to check out our docs to see where Preact differs"
-          href="https://preactjs.com/guide/v10/differences-to-react"
-          title="Differences to React"
-        />
-        <Resource
-          description="To learn more about Vite and how you can customize it to fit your needs, take a look at their excellent documentation"
-          href="https://vitejs.dev"
-          title="Wow"
-        />
-      </section>
-    </>
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div className="grid gap-8 grid-cols-3" onClick={onClick}>
+      {bottles.map((bottle, index) => <Bottle colors={bottle} index={index} isSelected={selectedBottle === index} key={index} />)}
+    </div>
   )
 }
 
