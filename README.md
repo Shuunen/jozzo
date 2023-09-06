@@ -10,6 +10,18 @@
 
 > A color sort puZZle that has nothing to do with &lt;3 JoJo's Bizarre Adventure &lt;3
 
+## Todo
+
+- [ ] use a state machine, xState ?
+- [ ] game generator that start with full bottle and mix them
+- [ ] use css animations and/or js animations and/or a lib for the pouring animation
+- [ ] add new game button
+- [ ] add a fail/success screen
+- [ ] handle a difficulty level :
+  - [ ] hard : 1 empty bottle, 10 stages and 8 colors
+  - [ ] medium : 2 empty bottles, 6 stages and 6 colors
+  - [ ] easy : 2 empty bottle, 4 stages and 3 colors
+
 ## Thanks
 
 - [Eslint](https://eslint.org) : super tool to find & fix problems
