@@ -7,7 +7,7 @@ function App () {
   return (
     <>
       <a href="https://preactjs.com" rel="noreferrer" target="_blank">
-        <Logo />
+        <Logo class="w-20 text-blue-300"/>
       </a>
       <h1>Get Started building Vite-powered Preact Apps </h1>
       <section>
