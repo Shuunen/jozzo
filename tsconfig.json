@@ -1,16 +1,35 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
     "checkJs": true,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "noEmit": true,
-    "target": "ES2020"
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2020",
+    "types": [
+      "vite/client"
+    ],
+    "verbatimModuleSyntax": true
   },
   "include": [
-    "node_modules/vite/client.d.ts",
-    "**/*"
+    "src",
+    "*.ts"
   ]
 }

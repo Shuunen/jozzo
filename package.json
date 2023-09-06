@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "author": "Romain Racamier-Lafon <romain.racamier@gmail.com>",
+  "bugs": "https://github.com/Shuunen/shuutils/issues",
+  "dependencies": {
+    "preact": "^10.13.1"
+  },
+  "description": "utils collection",
+  "devDependencies": {
+    "@preact/preset-vite": "^2.5.0",
+    "eslint": "^8.48.0",
+    "eslint-config-preact": "^1.3.0",
+    "eslint-config-hardcore": "41.2",
+    "eslint-plugin-unicorn": "^48.0.1",
+    "repo-check": "1.33",
+    "typescript": "5.1.6",
+    "vite": "^4.3.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/Shuunen/shuutils#readme",
+  "keywords": [
+    "color",
+    "sort",
+    "puzzle",
+    "Jojo"
+  ],
+  "license": "GPL-3.0",
+  "name": "jozzo",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shuunen/shuutils.git"
+  },
+  "scripts": {
+    "build": "vite build && echo build success",
+    "check": "pnpm install && pnpm build && pnpm lint && repo-check && pnpm test && echo check success",
+    "dev": "vite",
+    "lint": "tsc --noEmit && echo tsc success && eslint --cache --fix --ext .js,.ts,.tsx . && echo lint success",
+    "postversion": "git push && git push --tags && npm publish",
+    "preversion": "pnpm check",
+    "preview": "vite preview",
+    "test": "echo no test yet && echo test success"
+  },
+  "type": "module",
+  "version": "0.0.0"
+}
