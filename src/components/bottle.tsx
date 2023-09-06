@@ -12,7 +12,7 @@ type BottleProperties = {
   readonly isSelected: boolean
 }
 
-export function Bottle ({ colors, index, isSelected }: BottleProperties) {
+export function AppBottle ({ colors, index, isSelected }: BottleProperties) {
   // bg-red-500 bg-green-500 bg-blue-500 bg-yellow-500
   return (
     <div className={`flex cursor-pointer hover:shadow shadow-white flex-col border-2 border-t-0 transform transition-transform ${isSelected ? '-translate-y-3' : ''}`} data-index={index}>

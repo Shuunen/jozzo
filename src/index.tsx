@@ -3,33 +3,28 @@
 import { render } from 'preact'
 import { useState } from 'preact/hooks'
 import { pickOne } from 'shuutils'
-import { Bottle } from './components/bottle'
+import { AppBottle } from './components/bottle'
 import './style.css'
-import { colors, type Color } from './utils/colors'
-
+import { colors, type Bottle } from './utils/colors'
 
 function getColors (nbColors = 5) {
-  const bottle: Color[] = []
+  const bottle: Bottle = []
   for (let index = 0; index < nbColors; index += 1) {
     const color = pickOne(Array.from(colors))
     bottle.push(color)
   }
-  // eslint-disable-next-line etc/no-assign-mutated-array
-  return bottle.sort()
+  return bottle.sort() // eslint-disable-line etc/no-assign-mutated-array
 }
 
 function getBottles (nbBottles = 6) {
-  const bottles: Color[][] = []
-
-  for (let index = 0; index < nbBottles; index += 1)
-    bottles.push(getColors())
-
+  const bottles: Bottle[] = []
+  for (let index = 0; index < nbBottles; index += 1) bottles.push(getColors())
   return bottles
 }
 
 function App () {
   const [selectedBottle, setSelectedBottle] = useState<number>(-1)
-  const [bottles] = useState<Color[][]>(getBottles())
+  const [bottles] = useState<Bottle[]>(getBottles())
 
   function onClick (event: Event) {
     const element = event.target as HTMLElement // eslint-disable-line @typescript-eslint/consistent-type-assertions
@@ -40,9 +35,8 @@ function App () {
   }
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div className="grid gap-8 grid-cols-3" onClick={onClick}>
-      {bottles.map((bottle, index) => <Bottle colors={bottle} index={index} isSelected={selectedBottle === index} key={index} />)}
+      {bottles.map((bottle, index) => <AppBottle colors={bottle} index={index} isSelected={selectedBottle === index} key={index} />)}
     </div>
   )
 }
