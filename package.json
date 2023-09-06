@@ -1,11 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/package",
   "author": "Romain Racamier-Lafon <romain.racamier@gmail.com>",
-  "bugs": "https://github.com/Shuunen/shuutils/issues",
+  "bugs": "https://github.com/Shuunen/jozzo/issues",
   "dependencies": {
     "preact": "10.13"
   },
-  "description": "utils collection",
+  "description": "A color sort puzzle game",
   "devDependencies": {
     "@preact/preset-vite": "2.5",
     "eslint": "8.48",
@@ -20,7 +20,7 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/Shuunen/shuutils#readme",
+  "homepage": "https://github.com/Shuunen/jozzo#readme",
   "keywords": [
     "color",
     "sort",
@@ -32,7 +32,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Shuunen/shuutils.git"
+    "url": "git+https://github.com/Shuunen/jozzo.git"
   },
   "scripts": {
     "build": "vite build && echo build success",
