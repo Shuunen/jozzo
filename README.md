@@ -26,7 +26,9 @@
 
 - [Eslint](https://eslint.org) : super tool to find & fix problems
 - [Github](https://github.com) : for all their great work year after year, pushing OSS forward
+- [Paint bucket icon](https://uxwing.com/paint-bucket-icon/) : for the bucket icon
 - [Repo-checker](https://github.com/Shuunen/repo-checker) : eslint cover /src code and this tool the rest ^^
 - [Shields.io](https://shields.io) : for the nice badges on top of this readme
+- [Shuutils](https://github.com/Shuunen/shuutils) : collection of pure JS utils
+- [TailwindCss](https://tailwindcss.com) : awesome lib to produce maintainable style
 - [Vite](https://github.com/vitejs/vite) : super fast frontend tooling
-- [Paint bucket icon](https://uxwing.com/paint-bucket-icon/) : for the bucket icon
