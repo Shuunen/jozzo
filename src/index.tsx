@@ -35,7 +35,7 @@ function App () {
   }
 
   return (
-    <div className="grid gap-8 grid-cols-3" onClick={onClick}>
+    <div className="grid grid-cols-3 gap-8" onClick={onClick}>
       {bottles.map((bottle, index) => <AppBottle colors={bottle} index={index} isSelected={selectedBottle === index} key={index} />)}
     </div>
   )
