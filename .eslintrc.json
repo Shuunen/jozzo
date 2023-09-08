@@ -6,6 +6,7 @@
   },
   "extends": [
     "preact",
+    "plugin:tailwindcss/recommended",
     "plugin:unicorn/all",
     "hardcore",
     "hardcore/react",
@@ -150,6 +151,8 @@
     "import/prefer-default-export": "off",
     "indent": "off",
     "jest/no-deprecated-functions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
     "line-comment-position": "off",
     "lines-around-comment": "off",
     "lines-between-class-members": "off",
