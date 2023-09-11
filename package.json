@@ -50,10 +50,11 @@
     "url": "git+https://github.com/Shuunen/jozzo.git"
   },
   "scripts": {
-    "build": "vite build && echo build success",
+    "build": "vite build && pnpm mark && echo build success",
     "check": "pnpm install && pnpm build && pnpm lint && repo-check && pnpm test && echo check success",
     "dev": "vite",
     "lint": "tsc --noEmit && echo tsc success && eslint --cache --fix --ext .js,.ts,.tsx . && echo lint success",
+    "mark": "unique-mark dist/index.html && echo mark success",
     "postversion": "git push && git push --tags && npm publish",
     "preversion": "pnpm check",
     "serve": "pnpm build && vite preview",

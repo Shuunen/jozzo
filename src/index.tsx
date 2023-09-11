@@ -84,8 +84,8 @@ function App () {
   }
 
   return (
-    <div className="container mx-auto flex h-screen w-full max-w-xl flex-col items-center gap-6" >
-      {logo({ className: `${state === 'initial' ? 'pt-24 pb-6 w-4/5 fill-purple-900' : 'w-56 fill-transparent'} drop-shadow-lg transition-all`, title: 'app logo' }) /* eslint-disable-line unicorn/no-keyword-prefix */}
+    <div className="container mx-auto flex h-screen w-full max-w-xl flex-col items-center justify-center gap-6 md:justify-start" >
+      {logo({ className: `${state === 'initial' ? 'pt-24 pb-6 w-4/5 fill-purple-900' : 'w-56 fill-transparent hidden md:block'} drop-shadow-lg transition-all`, title: 'app logo' }) /* eslint-disable-line unicorn/no-keyword-prefix */}
       {state === 'initial' && <Button onClick={onStart} variant='contained'>Start game</Button>}
       {state !== 'initial' && <>
         <Button color='warning' onClick={onReset} variant='contained'>Reset game</Button>
