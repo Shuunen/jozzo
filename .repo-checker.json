@@ -2,7 +2,8 @@
   "devDepsOnly": false,
   "license": "GPL-3.0",
   "maxSizeKo": 40,
-  "npmPackage": true,
+  "npmPackage": false,
   "userMail": "romain.racamier@gmail.com",
-  "userName": "Romain Racamier-Lafon"
+  "userName": "Romain Racamier-Lafon",
+  "webUrl": "https://jozzo.netlify.app"
 }
