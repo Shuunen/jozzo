@@ -4,7 +4,7 @@ import { colors, type Bottle, type Color } from './colors.utils'
 function getColors (nbColors = 5) {
   const bottle: Bottle = []
   for (let index = 0; index < nbColors; index += 1) {
-    const color = pickOne(Array.from(colors))
+    const color = pickOne(Array.from(colors.concat('')))
     bottle.push(color)
   }
   return bottle.sort() // eslint-disable-line etc/no-assign-mutated-array
