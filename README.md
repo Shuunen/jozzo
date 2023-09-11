@@ -6,7 +6,7 @@
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/Shuunen/jozzo?style=flat)](https://codeclimate.com/github/Shuunen/jozzo)
 [![Project license](https://img.shields.io/github/license/Shuunen/jozzo.svg?color=informational)](https://github.com/Shuunen/jozzo/blob/master/LICENSE)
 
-![logo](src/assets/bucket.svg)
+![logo](src/assets/logo-banner.svg)
 
 > A color sort puZZle that has nothing to do with &lt;3 JoJo's Bizarre Adventure &lt;3
 

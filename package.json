@@ -2,15 +2,18 @@
   "$schema": "https://json.schemastore.org/package",
   "author": "Romain Racamier-Lafon <romain.racamier@gmail.com>",
   "bugs": "https://github.com/Shuunen/jozzo/issues",
-  "dependencies": {
-    "preact": "10.17",
-    "shuutils": "7.3"
-  },
   "contributors": [
     {
       "name": "Jordan Boyer"
     }
   ],
+  "dependencies": {
+    "@emotion/react": "11.11",
+    "@emotion/styled": "11.11",
+    "@mui/material": "5.14",
+    "preact": "10.17",
+    "shuutils": "7.3"
+  },
   "description": "A color sort puzzle game",
   "devDependencies": {
     "@preact/preset-vite": "2.5",
