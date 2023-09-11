@@ -14,7 +14,7 @@
 
 ![demo](docs/demo.gif)
 
-[Hosting graciously provided by Netlify](https://www.netlify.com)
+[Hosting graciously provided by Netlify](https://www.netlify.app)
 
 ## Todo
 
