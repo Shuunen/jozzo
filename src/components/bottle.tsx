@@ -6,7 +6,7 @@
  * @param props
  * @returns
  */
-import type { Color } from '../utils/colors'
+import type { Color } from '../utils/colors.utils'
 
 type BottleProperties = {
   readonly colors: Color[]
