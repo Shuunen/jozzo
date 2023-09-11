@@ -3,6 +3,7 @@
     "jozzo",
     "Jozzo",
     "preact",
-    "svgr"
+    "svgr",
+    "xstate"
   ]
 }

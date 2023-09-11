@@ -24,19 +24,16 @@ export function getBottles (nbBottles = 6) {
 export function pour (from: Readonly<Bottle>, to: Readonly<Bottle>): [Bottle, Bottle] {
   const cloneFrom = Array.from(from)
   const cloneTo = Array.from(to)
+  /* c8 ignore next */
   if (cloneFrom.every((color) => color === '')) return [cloneFrom, cloneTo]
-
   let lastColor: Color | undefined // eslint-disable-line @typescript-eslint/init-declarations
-
-  for (let index = to.length - 1; index >= 0; index -= 1)
-    if (to[index] === '') {
-      const colorIndex = getFirstColorIndex(cloneFrom)
-      const color = cloneFrom[colorIndex]
-      if (lastColor !== undefined && lastColor !== color) break
-      lastColor = color
-      cloneTo[index] = color! // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      cloneFrom[colorIndex] = ''
-    }
-
+  for (let index = to.length - 1; index >= 0; index -= 1) if (to[index] === '') {
+    const colorIndex = getFirstColorIndex(cloneFrom)
+    const color = cloneFrom[colorIndex]
+    if (lastColor !== undefined && lastColor !== color) break
+    lastColor = color
+    cloneTo[index] = color! // eslint-disable-line @typescript-eslint/no-non-null-assertion
+    cloneFrom[colorIndex] = ''
+  }
   return [cloneFrom, cloneTo]
 }
