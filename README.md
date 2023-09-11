@@ -1,17 +1,20 @@
 # Jozzo
 
-[![Install size](https://badgen.net/packagephobia/install/jozzo)](https://packagephobia.com/result?p=jozzo)
-[![Publish size](https://img.shields.io/bundlephobia/min/jozzo?label=publish%20size)](https://bundlephobia.com/package/jozzo)
-[![Npm monthly downloads](https://img.shields.io/npm/dm/jozzo.svg?color=informational)](https://www.npmjs.com/package/jozzo)
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/Shuunen/jozzo?style=flat)](https://codeclimate.com/github/Shuunen/jozzo)
 [![Project license](https://img.shields.io/github/license/Shuunen/jozzo.svg?color=informational)](https://github.com/Shuunen/jozzo/blob/master/LICENSE)
 [![Website Up](https://img.shields.io/website/https/what-now.netlify.app.svg)](https://jozzo.netlify.app)
 
-![logo](src/assets/logo-banner.svg)
+![logo](docs/logo-banner.svg)
 
 > A color sort puZZle that has nothing to do with &lt;3 JoJo's Bizarre Adventure &lt;3
 
-[Try it online ^^](https://jozzo.netlify.app)
+## Demo
+
+[Try it online](https://jozzo.netlify.app)
+
+![demo](docs/demo.gif)
+
+[Hosting graciously provided by Netlify](https://www.netlify.com)
 
 ## Todo
 
