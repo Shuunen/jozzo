@@ -11,8 +11,10 @@
     "@emotion/react": "11.11",
     "@emotion/styled": "11.11",
     "@mui/material": "5.14",
+    "@xstate/react": "3.2",
     "preact": "10.17",
-    "shuutils": "7.3"
+    "shuutils": "7.3",
+    "xstate": "4.38"
   },
   "description": "A color sort puzzle game",
   "devDependencies": {

@@ -1,93 +1,55 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import Button from '@mui/material/Button'
+import { useMachine } from '@xstate/react'
 import { render } from 'preact'
-import { useState } from 'preact/hooks'
-import { pickOne, sleep } from 'shuutils'
+import { sleep } from 'shuutils'
 import { ReactComponent as logo } from './assets/logo-fillable.svg'
 import { AppBottle } from './components/bottle'
 import './style.css'
-import { pour } from './utils/bottle.utils'
-import { colors, type Bottle } from './utils/colors.utils'
-import { machine } from './utils/state.utils'
+import { gameMachine } from './utils/state.utils'
 
-function getColors (nbColors = 5) {
-  const bottle: Bottle = []
-  for (let index = 0; index < nbColors; index += 1) {
-    const color = pickOne(Array.from(colors))
-    bottle.push(color)
-  }
-  return bottle.sort() // eslint-disable-line etc/no-assign-mutated-array
-}
-
-function getBottles (nbBottles = 6) {
-  const bottles: Bottle[] = []
-  for (let index = 0; index < nbBottles; index += 1) bottles.push(getColors())
-  return bottles
-}
-
-// eslint-disable-next-line max-statements
 function App () {
-  const [selected, setSelected] = useState<number>(-1)
-  const [bottles, setBottles] = useState<Bottle[]>(getBottles())
-  const [state, setState] = useState(machine.state)
+  const [state, action] = useMachine(gameMachine)
+  const { bottles, selected } = state.context
 
   console.count('render') // eslint-disable-line no-console
-
-  function deselect () {
-    setSelected(-1)
-    setState('ready')
-  }
-
-  function pourInto (index: number) {
-    setState('pouring')
-    const from = bottles[selected]
-    const to = bottles[index]
-    if (!from || !to) throw new Error('Could not find from/to bottle')
-    const [updatedFrom, updatedTo] = pour(from, to)
-    // eslint-disable-next-line promise/prefer-await-to-then, promise/always-return
-    void sleep(600).then(() => {
-      bottles[selected] = updatedFrom
-      bottles[index] = updatedTo
-      setBottles(Array.from(bottles))
-      deselect()
-    })
-  }
 
   function onClick (event: Event) {
     const element = event.target as HTMLElement // eslint-disable-line @typescript-eslint/consistent-type-assertions
     const index = Number(element.dataset.index)
     if (Number.isNaN(index)) return void 0 // eslint-disable-line no-void
-    if (index === selected) return deselect()
-    setState('selected')
-    if (selected === -1) return setSelected(index)
-    return pourInto(index)
+    if (index === selected) return action('deselect')
+    if (selected === -1) return action('select', { index })
+    return action('pour', { index })
   }
 
   function onStart () {
-    setState('ready')
+    action('start')
   }
 
   function onReset () {
-    setState('initial')
-    setSelected(-1)
+    action('reset')
   }
 
   function getStateIcon () {
-    if (state === 'initial') return '🎬'
-    if (state === 'ready') return '🏎️'
-    if (state === 'selected') return '🏹'
-    if (state === 'pouring') return '💧'
-    if (state === 'win') return '🥳'
-    if (state === 'loose') return '😭' // eslint-disable-line @typescript-eslint/no-unnecessary-condition
+    if (state.value === 'initial') return '🎬'
+    if (state.value === 'ready') return '🏎️'
+    if (state.value === 'selected') return '🏹'
+    if (state.value === 'pouring') return '💧'
+    if (state.value === 'win') return '🥳'
+    if (state.value === 'loose') return '😭'
     return '🤔'
   }
 
+  // start animation
+  if (state.matches('pouring')) void sleep(600).then(() => action('stopPouring')) // eslint-disable-line promise/prefer-await-to-then
+
   return (
     <div className="container mx-auto flex h-screen w-full max-w-xl flex-col items-center justify-center gap-6 md:justify-start" >
-      {logo({ className: `${state === 'initial' ? 'pt-24 pb-6 w-4/5 fill-purple-900' : 'w-56 fill-transparent hidden md:block'} drop-shadow-lg transition-all`, title: 'app logo' }) /* eslint-disable-line unicorn/no-keyword-prefix */}
-      {state === 'initial' && <Button onClick={onStart} variant='contained'>Start game</Button>}
-      {state !== 'initial' && <>
+      {logo({ className: `${state.matches('initial') ? 'pt-24 pb-6 w-4/5 fill-purple-900' : 'w-56 fill-transparent hidden md:block'} drop-shadow-lg transition-all`, title: 'app logo' }) /* eslint-disable-line unicorn/no-keyword-prefix */}
+      {state.matches('initial') && <Button onClick={onStart} variant='contained'>Start game</Button>}
+      {!state.matches('initial') && <>
         <Button color='warning' onClick={onReset} variant='contained'>Reset game</Button>
         <div className="my-6 flex justify-center">
           <div className="grid grid-cols-3 gap-12" onClick={onClick}>
@@ -95,7 +57,7 @@ function App () {
           </div>
         </div>
       </>}
-      <pre>state : {state} <span className="text-2xl">{getStateIcon()}</span></pre>
+      <pre>state : {state.value} <span className="text-2xl">{getStateIcon()}</span></pre>
     </div>
   )
 }
