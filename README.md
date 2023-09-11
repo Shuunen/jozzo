@@ -18,11 +18,11 @@
 
 ## Todo
 
-- [ ] use a state machine, xState ?
+- [ ] try other state machines
 - [ ] game generator that start with full bottle and mix them
 - [ ] use css animations and/or js animations and/or a lib for the pouring animation
-- [ ] add new game button
 - [ ] add Jojo theme/references
+- [ ] add a Konami code ^^
 - [ ] add a fail/success screen
 - [ ] handle a difficulty level :
   - [ ] hard : 1 empty bottle, 10 stages and 8 colors
