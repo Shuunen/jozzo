@@ -55,7 +55,7 @@
     "dev": "vite",
     "lint": "tsc --noEmit && echo tsc success && eslint --cache --fix --ext .js,.ts,.tsx . && echo lint success",
     "mark": "unique-mark dist/index.html && echo mark success",
-    "postversion": "git push && git push --tags && npm publish",
+    "postversion": "git push && git push --tags",
     "preversion": "pnpm check",
     "serve": "pnpm build && vite preview",
     "test": "vitest --coverage --run && echo test success",
