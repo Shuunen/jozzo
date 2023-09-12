@@ -3,28 +3,13 @@
 import Button from '@mui/material/Button'
 import { render } from 'preact'
 import { useState } from 'preact/hooks'
-import { pickOne, sleep } from 'shuutils'
+import { sleep } from 'shuutils'
 import { ReactComponent as logo } from './assets/logo-fillable.svg'
 import { AppBottle } from './components/bottle'
 import './style.css'
-import { pour } from './utils/bottle.utils'
-import { colors, type Bottle } from './utils/colors.utils'
+import { getBottles, pour } from './utils/bottle.utils'
+import type { Bottle } from './utils/colors.utils'
 import { machine } from './utils/state.utils'
-
-function getColors (nbColors = 5) {
-  const bottle: Bottle = []
-  for (let index = 0; index < nbColors; index += 1) {
-    const color = pickOne(Array.from(colors))
-    bottle.push(color)
-  }
-  return bottle.sort() // eslint-disable-line etc/no-assign-mutated-array
-}
-
-function getBottles (nbBottles = 6) {
-  const bottles: Bottle[] = []
-  for (let index = 0; index < nbBottles; index += 1) bottles.push(getColors())
-  return bottles
-}
 
 // eslint-disable-next-line max-statements
 function App () {
