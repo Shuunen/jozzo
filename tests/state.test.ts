@@ -42,3 +42,25 @@ it('state E get context', () => {
   machine.select(2)
   expect(machine.context.selected).toBe(2)
 })
+
+it('state F reset', () => {
+  const machine = new Machine()
+  machine.start()
+  machine.select(2)
+  machine.reset()
+  expect(machine.state).toBe('initial')
+})
+
+it('state G icon', () => {
+  const machine = new Machine()
+  expect(machine.icon().length).toBe(2)
+})
+
+it('state H transition callback', () => {
+  let count = 0
+  const machine = new Machine(() => { count += 1 })
+  machine.start()
+  machine.select(2)
+  machine.reset()
+  expect(count).toBe(4)
+})

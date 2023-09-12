@@ -87,6 +87,12 @@
       "error",
       "always"
     ],
+    "@typescript-eslint/parameter-properties": [
+      "error",
+      {
+        "prefer": "parameter-property"
+      }
+    ],
     "@typescript-eslint/prefer-readonly-parameter-types": "off",
     "@typescript-eslint/quotes": [
       "error",
@@ -175,6 +181,7 @@
       "consistent-as-needed"
     ],
     "quotes": "off",
+    "react-perf/jsx-no-new-function-as-prop": "off",
     "require-atomic-updates": [
       "error",
       {
