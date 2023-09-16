@@ -1,53 +1,54 @@
-import { sleep } from 'shuutils'
+import { createState, sleep } from 'shuutils'
 import { getBottles, pour } from './bottle.utils'
 import type { Bottle } from './colors.utils'
 import { logger } from './logger.utils'
 
-type Context = {
-  bottles: Bottle[]
-  selected: number
-}
+type State = 'initial' | 'loose' | 'pouring' | 'ready' | 'selected' | 'win'
+
+type Context = { bottles: Bottle[]; selected: number; state: State }
 
 export class Machine {
-
-  private localState: 'initial' | 'loose' | 'pouring' | 'ready' | 'selected' | 'win' = 'initial'
-
-  private readonly localContext: Context = { bottles: [], selected: -1 }
-
-  public constructor (private readonly onTransition?: (updatedState: Machine['localState']) => void) { }
-
+  private readonly context: Context = { bottles: [], selected: -1, state: 'initial' }
+  public readonly watchContext: (key: keyof Context, callback: () => void) => void
+  public constructor () {
+    const { state, watchState } = createState<Context>(this.context)
+    this.context = state
+    this.watchContext = watchState
+  }
   public get state () {
-    return this.localState
+    return this.context.state
   }
-  public get context () {
-    return this.localContext
+  public get selected () {
+    return this.context.selected
   }
-  private transition (from: typeof this.localState, to: typeof this.localState) {
-    logger.debug(`state transition ${from} => ${to} (actual ${this.localState})`)
-    if (from !== this.localState) throw new Error(`state cannot apply transition ${from} => ${to} (actual ${this.localState})`)
-    this.localState = to
-    this.onTransition?.(to)
+  public get bottles () {
+    return this.context.bottles
+  }
+  private transition (from: State, to: State) {
+    logger.debug(`state transition ${from} => ${to} (actual ${this.state})`)
+    if (from !== this.state) throw new Error(`state cannot apply transition ${from} => ${to} (actual ${this.state})`)
+    this.context.state = to
   }
   public start () {
     logger.debug('state start')
     this.transition('initial', 'ready')
-    this.localContext.bottles = getBottles()
+    this.context.bottles = getBottles()
   }
   public select (index: number) {
     logger.debug('state select')
     this.transition('ready', 'selected')
-    this.localContext.selected = index
+    this.context.selected = index
   }
-  public deselect (from: typeof this.localState = 'selected') {
+  public deselect (from: State = 'selected') {
     this.transition(from, 'ready')
-    this.localContext.selected = -1
+    this.context.selected = -1
   }
   public reset () {
-    this.deselect(this.localState)
+    this.deselect(this.state)
     this.transition('ready', 'initial')
   }
   public icon () {
-    const state = this.localState
+    const { state } = this
     /* c8 ignore next 7 */
     if (state === 'initial') return '🎬'
     if (state === 'ready') return '🏎️'
@@ -60,9 +61,9 @@ export class Machine {
   // eslint-disable-next-line max-statements
   public async pour (index: number) {
     this.transition('selected', 'pouring')
-    logger.info(`pouring bottle ${this.localContext.selected} into bottle ${index}`)
+    const { bottles, selected } = this.context
+    logger.info(`pouring bottle ${selected} into bottle ${index}`)
     await sleep(600) // eslint-disable-line @typescript-eslint/no-magic-numbers
-    const { bottles, selected } = this.localContext
     const from = bottles[selected]
     const to = bottles[index]
     /* c8 ignore next */
@@ -73,3 +74,5 @@ export class Machine {
     this.deselect('pouring')
   }
 }
+
+export const machine = new Machine()

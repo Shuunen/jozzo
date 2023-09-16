@@ -6,11 +6,11 @@ import { useState } from 'preact/hooks'
 import { ReactComponent as logo } from './assets/logo-fillable.svg'
 import { AppBottle } from './components/bottle'
 import './style.css'
-import { Machine } from './utils/state.utils'
+import { machine } from './utils/state.utils'
 
 function App () {
-  const [state, setState] = useState<Machine['state']>('initial')
-  const [machine] = useState(new Machine((updatedState) => setState(updatedState)))
+  const [state, setState] = useState<typeof machine['state']>('initial')
+  machine.watchContext('state', () => setState(machine.state))
 
   console.count('render') // eslint-disable-line no-console
 
@@ -18,8 +18,8 @@ function App () {
     const element = event.target as HTMLElement // eslint-disable-line @typescript-eslint/consistent-type-assertions
     const index = Number(element.dataset.index)
     if (Number.isNaN(index)) return void 0 // eslint-disable-line no-void
-    if (index === machine.context.selected) return machine.deselect()
-    if (machine.context.selected === -1) return machine.select(index)
+    if (index === machine.selected) return machine.deselect()
+    if (machine.selected === -1) return machine.select(index)
     return void machine.pour(index) // eslint-disable-line no-void
   }
 
@@ -31,7 +31,7 @@ function App () {
         <Button color='warning' onClick={() => machine.reset()} variant='contained'>Reset game</Button>
         <div className="my-6 flex justify-center">
           <div className="grid grid-cols-3 gap-12" onClick={onClick}>
-            {machine.context.bottles.map((bottle, index) => <AppBottle colors={bottle} index={index} isSelected={machine.context.selected === index} key={index} />)}
+            {machine.bottles.map((bottle, index) => <AppBottle colors={bottle} index={index} isSelected={machine.selected === index} key={index} />)}
           </div>
         </div>
       </>}
