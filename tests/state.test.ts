@@ -11,7 +11,6 @@ it('state A initial > ready > selected', () => {
   expect(machine.state).toBe('selected')
 })
 
-
 it('state B initial cannot go into selected', () => {
   const machine = new Machine()
   expect(machine.state).toBe('initial')
@@ -36,11 +35,11 @@ it('state D selected > pouring > ready', async () => {
   expect(machine.state).toBe('ready')
 })
 
-it('state E get context', () => {
+it('state E get selected', () => {
   const machine = new Machine()
   machine.start()
   machine.select(2)
-  expect(machine.context.selected).toBe(2)
+  expect(machine.selected).toBe(2)
 })
 
 it('state F reset', () => {
@@ -56,11 +55,7 @@ it('state G icon', () => {
   expect(machine.icon().length).toBe(2)
 })
 
-it('state H transition callback', () => {
-  let count = 0
-  const machine = new Machine(() => { count += 1 })
-  machine.start()
-  machine.select(2)
-  machine.reset()
-  expect(count).toBe(4)
+it('state H get bottles', () => {
+  const machine = new Machine()
+  expect(machine.bottles.length).toBe(0)
 })
