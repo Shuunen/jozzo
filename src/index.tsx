@@ -3,7 +3,7 @@
 import Button from '@mui/material/Button'
 import { render } from 'preact'
 import { useState } from 'preact/hooks'
-import { ReactComponent as logo } from './assets/logo-fillable.svg'
+import logo from './assets/logo-fillable.svg?react'
 import { AppBottle } from './components/bottle'
 import './style.css'
 import { Machine } from './utils/state.utils'
