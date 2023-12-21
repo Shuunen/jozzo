@@ -93,6 +93,7 @@
         "prefer": "parameter-property"
       }
     ],
+    "@typescript-eslint/prefer-destructuring": "off",
     "@typescript-eslint/prefer-readonly-parameter-types": "off",
     "@typescript-eslint/quotes": [
       "error",
@@ -107,13 +108,16 @@
       "error",
       "always-multiline"
     ],
+    "compat/compat": "off",
     "curly": [
       "error",
       "multi"
     ],
     "eslint-comments/no-use": "off",
     "etc/no-const-enum": "off",
+    "etc/no-deprecated": "off",
     "etc/no-enum": "off",
+    "etc/no-internal": "off",
     "etc/no-t": "off",
     "etc/prefer-interface": "off",
     "ext/lines-between-object-properties": "off",
