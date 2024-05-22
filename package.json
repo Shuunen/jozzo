@@ -22,7 +22,7 @@
     "eslint": "8.57",
     "eslint-config-hardcore": "45.1",
     "eslint-config-preact": "1.4",
-    "eslint-plugin-tailwindcss": "3.15",
+    "eslint-plugin-tailwindcss": "3.16",
     "eslint-plugin-unicorn": "53.0",
     "postcss": "8.4",
     "repo-check": "1.35",
