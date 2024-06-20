@@ -7,6 +7,7 @@ type State = 'initial' | 'loose' | 'pouring' | 'ready' | 'selected' | 'win'
 
 type Context = { bottles: Bottle[]; selected: number; state: State }
 
+// eslint-disable-next-line no-restricted-syntax
 export class Machine {
   private readonly context: Context = { bottles: [], selected: -1, state: 'initial' }
   public readonly watchContext: (key: keyof Context, callback: () => void) => void

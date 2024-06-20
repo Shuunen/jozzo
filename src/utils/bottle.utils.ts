@@ -7,7 +7,8 @@ function getColors (nbColors = 5) {
     const color = pickOne(colors) /* c8 ignore next */ ?? 'blue'
     bottle.push(color)
   }
-  return bottle.sort() // eslint-disable-line etc/no-assign-mutated-array
+  // eslint-disable-next-line sonar/no-alphabetical-sort
+  return bottle.toSorted()
 }
 
 function getFirstColorIndex (bottle: Bottle) {
@@ -21,10 +22,10 @@ export function getBottles (nbBottles = 6) {
 }
 
 // eslint-disable-next-line max-statements
-export function pour (from: Readonly<Bottle>, to: Readonly<Bottle>): [Bottle, Bottle] {
+export function pour (from: Readonly<Bottle>, to: Readonly<Bottle>) {
   const cloneFrom = Array.from(from)
   const cloneTo = Array.from(to)
-  if (cloneFrom.every((color) => color === '')) return [cloneFrom, cloneTo]
+  if (cloneFrom.every((color) => color === '')) return [cloneFrom, cloneTo] satisfies [Bottle, Bottle]
 
   let lastColor: Color | undefined // eslint-disable-line @typescript-eslint/init-declarations
 
@@ -38,5 +39,5 @@ export function pour (from: Readonly<Bottle>, to: Readonly<Bottle>): [Bottle, Bo
       cloneFrom[colorIndex] = ''
     }
 
-  return [cloneFrom, cloneTo]
+  return [cloneFrom, cloneTo] satisfies [Bottle, Bottle]
 }
