@@ -1,5 +1,5 @@
 import { pickOne } from 'shuutils'
-import { colors, type Bottle, type Color } from './colors.utils'
+import { type Bottle, type Color, colors } from './colors.utils'
 
 function getColors (nbColors = 5) {
   const bottle: Bottle = []
@@ -7,7 +7,6 @@ function getColors (nbColors = 5) {
     const color = pickOne(colors) /* c8 ignore next */ ?? 'blue'
     bottle.push(color)
   }
-  // eslint-disable-next-line sonar/no-alphabetical-sort
   return bottle.toSorted()
 }
 

@@ -1,6 +1,6 @@
 import { sleep } from 'shuutils'
 import { expect, it } from 'vitest'
-import { Machine } from '../src/utils/state.utils'
+import { Machine } from './state.utils'
 
 it('state A initial > ready > selected', () => {
   const machine = new Machine()

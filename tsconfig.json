@@ -36,8 +36,9 @@
     "verbatimModuleSyntax": true
   },
   "include": [
+    "*.js",
+    "*.ts",
     "src",
-    "tests",
-    "*.ts"
+    "tests"
   ]
 }

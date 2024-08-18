@@ -1,5 +1,4 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-/* eslint-disable react/no-array-index-key */
 
 /**
  * Display a bottle

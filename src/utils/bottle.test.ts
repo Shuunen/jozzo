@@ -1,7 +1,7 @@
 /* eslint-disable id-length */
 import { expect, it } from 'vitest'
-import { getBottles, pour } from '../src/utils/bottle.utils'
-import type { Bottle } from '../src/utils/colors.utils'
+import { getBottles, pour } from './bottle.utils'
+import type { Bottle } from './colors.utils'
 
 it('pour A', () => {
   const a: Bottle = ['', '', 'blue']

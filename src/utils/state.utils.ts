@@ -16,37 +16,14 @@ export class Machine {
     this.context = state
     this.watchContext = watchState
   }
-  public get state () {
-    return this.context.state
-  }
-  public get selected () {
-    return this.context.selected
-  }
-  public get bottles () {
-    return this.context.bottles
-  }
   private transition (from: State, to: State) {
     logger.debug(`state transition ${from} => ${to} (actual ${this.state})`)
     if (from !== this.state) throw new Error(`state cannot apply transition ${from} => ${to} (actual ${this.state})`)
     this.context.state = to
   }
-  public start () {
-    logger.debug('state start')
-    this.transition('initial', 'ready')
-    this.context.bottles = getBottles()
-  }
-  public select (index: number) {
-    logger.debug('state select')
-    this.transition('ready', 'selected')
-    this.context.selected = index
-  }
   public deselect (from: State = 'selected') {
     this.transition(from, 'ready')
     this.context.selected = -1
-  }
-  public reset () {
-    this.deselect(this.state)
-    this.transition('ready', 'initial')
   }
   public icon () {
     const { state } = this
@@ -73,6 +50,29 @@ export class Machine {
     bottles[selected] = fromUpdated
     bottles[index] = toUpdated
     this.deselect('pouring')
+  }
+  public reset () {
+    this.deselect(this.state)
+    this.transition('ready', 'initial')
+  }
+  public select (index: number) {
+    logger.debug('state select')
+    this.transition('ready', 'selected')
+    this.context.selected = index
+  }
+  public start () {
+    logger.debug('state start')
+    this.transition('initial', 'ready')
+    this.context.bottles = getBottles()
+  }
+  public get bottles () {
+    return this.context.bottles
+  }
+  public get selected () {
+    return this.context.selected
+  }
+  public get state () {
+    return this.context.state
   }
 }
 

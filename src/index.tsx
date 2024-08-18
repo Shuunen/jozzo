@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable @typescript-eslint/no-magic-numbers */
 import Button from '@mui/material/Button'
 import { render } from 'preact'
 import { useState } from 'preact/hooks'
@@ -40,7 +38,6 @@ function App () {
   )
 }
 
-// eslint-disable-next-line ssr-friendly/no-dom-globals-in-module-scope
 const mountingElement = document.querySelector<HTMLElement>('#app')
 if (!mountingElement) throw new Error('Could not find #app')
 render(<App />, mountingElement)
