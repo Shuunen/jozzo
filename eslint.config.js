@@ -13,7 +13,6 @@ export default [
     rules: {
       '@typescript-eslint/no-confusing-void-expression': 'off',
       '@typescript-eslint/prefer-readonly-parameter-types': 'off',
-      'jsdoc/require-jsdoc': 'off',
     },
   },
 ]

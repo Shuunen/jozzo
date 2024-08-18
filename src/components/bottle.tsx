@@ -13,6 +13,14 @@ type BottleProperties = {
   readonly isSelected: boolean
 }
 
+/**
+ * Display a single bottle
+ * @param root0 the properties
+ * @param root0.colors the colors contained in the bottle
+ * @param root0.index the index of the bottle
+ * @param root0.isSelected if the bottle is selected
+ * @returns the bottle component
+ */
 export function AppBottle ({ colors, index, isSelected }: BottleProperties) {
   // bg-red-500 bg-green-500 bg-blue-500 bg-yellow-500
   return (

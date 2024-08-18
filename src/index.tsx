@@ -6,12 +6,21 @@ import { AppBottle } from './components/bottle'
 import './style.css'
 import { machine } from './utils/state.utils'
 
+/**
+ * The main application
+ * @returns the application component
+ */
 function App () {
   const [state, setState] = useState<typeof machine['state']>('initial')
   machine.watchContext('state', () => setState(machine.state))
 
   console.count('render') // eslint-disable-line no-console
 
+  /**
+   * Handle the click event on a bottle
+   * @param event the click event
+   * @returns nothing
+   */
   function onClick (event: Event) {
     const element = event.target as HTMLElement // eslint-disable-line @typescript-eslint/consistent-type-assertions
     const index = Number(element.dataset.index)
@@ -34,6 +43,9 @@ function App () {
         </div>
       </>}
       <pre>state : {state} <span className="text-2xl">{machine.icon()}</span></pre>
+      <footer class="fixed bottom-2 right-5 mt-4 text-center text-xs font-thin text-gray-500">
+        __unique-mark__
+      </footer>
     </div>
   )
 }
