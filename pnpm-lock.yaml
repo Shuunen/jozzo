@@ -41,7 +41,7 @@ devDependencies:
     specifier: '8.4'
     version: 8.4.41
   repo-check:
-    specifier: 1.37.1
+    specifier: '1.37'
     version: 1.37.1
   tailwindcss:
     specifier: '3.4'
