@@ -18,8 +18,8 @@ dependencies:
     specifier: '10.24'
     version: 10.24.0
   shuutils:
-    specifier: '9.0'
-    version: 9.0.0
+    specifier: '10.0'
+    version: 10.0.0
 
 devDependencies:
   '@preact/preset-vite':
@@ -3359,8 +3359,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /shuutils@9.0.0:
-    resolution: {integrity: sha512-MfWfhceiekvjZV5PFF3CTWjVBBNOPaREQZ72cBPt3W2WFJ8OMorHuRgaCgqdl7UGQzA651u0xNH3ZZAfm4t+sA==}
+  /shuutils@10.0.0:
+    resolution: {integrity: sha512-A5/PcShJU4VsJ2l6CIFNRz6INFWMeBZDd0memALTy5LY4RUyNlhZIIzyi5yl7Pjk5uyQG5SIbycvAj546YNonQ==}
     hasBin: true
     dependencies:
       tiny-glob: 0.2.9
