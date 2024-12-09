@@ -8,8 +8,8 @@
     }
   ],
   "dependencies": {
-    "@emotion/react": "11.13",
-    "@emotion/styled": "11.13",
+    "@emotion/react": "11.14",
+    "@emotion/styled": "11.14",
     "@mui/material": "6.1",
     "preact": "10.25",
     "shuutils": "9.0"
