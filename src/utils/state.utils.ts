@@ -40,6 +40,13 @@ export class Machine {
     this.#context.state = to
   }
   /**
+   * Bottles getter
+   * @returns the bottles
+   */
+  public get bottles () {
+    return this.#context.bottles
+  }
+  /**
    * Deselect a bottle
    * @param from the state to transition from
    */
@@ -62,7 +69,6 @@ export class Machine {
     if (state === 'loose') return '😭' // eslint-disable-line @typescript-eslint/no-unnecessary-condition
     return '🤔'
   }
-
   /**
    * Pour the selected bottle into another bottle
    * @param index the index of the bottle to pour into
@@ -100,26 +106,19 @@ export class Machine {
     this.#context.selected = index
   }
   /**
+   * Selected getter
+   * @returns the selected bottle
+   */
+  public get selected () {
+    return this.#context.selected
+  }
+  /**
    * Start the game
    */
   public start () {
     logger.debug('state start')
     this.#transition('initial', 'ready')
     this.#context.bottles = getBottles()
-  }
-  /**
-   * Bottles getter
-   * @returns the bottles
-   */
-  public get bottles () {
-    return this.#context.bottles
-  }
-  /**
-   * Selected getter
-   * @returns the selected bottle
-   */
-  public get selected () {
-    return this.#context.selected
   }
   /**
    * State getter

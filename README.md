@@ -42,3 +42,11 @@
 - [V8](https://github.com/demurgos/v8-coverage) : simple & effective cli for code coverage
 - [Vite](https://github.com/vitejs/vite) : super fast frontend tooling
 - [Vitest](https://github.com/vitest-dev/vitest) : super fast vite-native testing framework
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/Shuunen/jozzo.svg?variant=adaptive)](https://starchart.cc/Shuunen/jozzo)
+
+## Page views
+
+[![Free Website Counter](https://www.websitecounterfree.com/c.php?d=9&id=64380&s=12)](https://www.websitecounterfree.com)

@@ -22,7 +22,8 @@ function App () {
    * @returns nothing
    */
   function onClick (event: Event) {
-    const element = event.target as HTMLElement // eslint-disable-line @typescript-eslint/consistent-type-assertions
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
+    const element = event.target as HTMLElement
     const index = Number(element.dataset.index)
     if (Number.isNaN(index)) return void 0 // eslint-disable-line no-void
     if (index === machine.selected) return machine.deselect()

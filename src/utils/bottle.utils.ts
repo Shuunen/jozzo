@@ -1,4 +1,4 @@
-import { getRandomNumber, pickOne } from 'shuutils'
+import { randomNumber, pickOne } from 'shuutils'
 import { type Bottle, type Color, getNextColor } from './colors.utils'
 import { logger } from './logger.utils'
 
@@ -89,8 +89,6 @@ export function pour (from: Readonly<Bottle>, to: Readonly<Bottle>, amount?: num
 export function getRandomBottleWithSpace (bottles: Bottle[]) {
   const bottlesWithSpace = bottles.filter((bottle) => bottle.includes(''))
   const content = pickOne(bottlesWithSpace)
-  /* c8 ignore next */
-  if (content === undefined) throw new Error('failed to pick a bottle with space')
   const index = bottles.findIndex((bottle) => bottle.join('-') === content.join('-'))
   return { bottleWithSpace: content, bottleWithSpaceIndex: index }
 }
@@ -104,8 +102,6 @@ export function getRandomBottleWithSpace (bottles: Bottle[]) {
 export function getRandomBottleWithColors (bottles: Bottle[]) {
   const bottlesWithColors = bottles.filter((bottle) => bottle.some((color) => color !== ''))
   const content = pickOne(bottlesWithColors)
-  /* c8 ignore next */
-  if (content === undefined) throw new Error('failed to pick a bottle with colors')
   const index = bottles.findIndex((bottle) => bottle.join('-') === content.join('-'))
   return { bottleWithColors: content, bottleWithColorsIndex: index }
 }
@@ -124,7 +120,7 @@ export function mixBottles (bottles: Bottle[]) {
     const { bottleWithColors, bottleWithColorsIndex } = getRandomBottleWithColors(mixedBottles)
     if (bottleWithSpaceIndex === bottleWithColorsIndex) continue
     const nbSpaces = bottleWithSpace.filter((color) => color === '').length
-    const nbColorsToPour = getRandomNumber(1, Math.max(bottleWithColors.filter((color) => color !== '').length - 1, nbSpaces))
+    const nbColorsToPour = randomNumber(1, Math.max(bottleWithColors.filter((color) => color !== '').length - 1, nbSpaces))
     logger.info(`pouring ${nbColorsToPour} colors from bottle ${bottleWithColorsIndex} ${asciiBottle(bottleWithColors)} to bottle ${bottleWithSpaceIndex} ${asciiBottle(bottleWithSpace)}`)
     const [from, to] = pour(bottleWithColors, bottleWithSpace, nbColorsToPour)
     mixedBottles[bottleWithColorsIndex] = from

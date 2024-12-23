@@ -10,9 +10,9 @@
   "dependencies": {
     "@emotion/react": "11.14",
     "@emotion/styled": "11.14",
-    "@mui/material": "6.1",
+    "@mui/material": "6.3",
     "preact": "10.25",
-    "shuutils": "9.0"
+    "shuutils": "10.1"
   },
   "description": "A color sort puzzle game",
   "devDependencies": {
@@ -20,7 +20,7 @@
     "@vitest/coverage-v8": "2.1",
     "autoprefixer": "10.4",
     "eslint": "*",
-    "eslint-plugin-shuunen": "0.3",
+    "eslint-plugin-shuunen": "0.4",
     "postcss": "8.4",
     "repo-check": "1.40",
     "tailwindcss": "3.4",
@@ -51,7 +51,7 @@
     "check": "pnpm install && pnpm build && pnpm lint && repo-check && pnpm test && echo check success",
     "dev": "vite",
     "lint": "tsc --noEmit && echo tsc success && eslint --cache src && echo lint success",
-    "mark": "unique-mark dist/index.html && echo mark success",
+    "mark": "unique-mark dist/index.{html} && echo mark success",
     "postversion": "git push && git push --tags",
     "preversion": "pnpm check",
     "serve": "pnpm build && vite preview",
