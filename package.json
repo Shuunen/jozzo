@@ -12,7 +12,7 @@
     "@emotion/styled": "11.14",
     "@mui/material": "6.3",
     "preact": "10.25",
-    "shuutils": "10.1"
+    "shuutils": "10.2"
   },
   "description": "A color sort puzzle game",
   "devDependencies": {
