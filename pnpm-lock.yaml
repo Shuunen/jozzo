@@ -32,7 +32,7 @@ importers:
         version: 3.0.0(vitest@3.0.0(jiti@1.21.7)(yaml@2.6.1))
       autoprefixer:
         specifier: '10.4'
-        version: 10.4.20(postcss@8.5.1)
+        version: 10.4.20(postcss@8.5.3)
       eslint:
         specifier: '*'
         version: 9.17.0(jiti@1.21.7)
@@ -41,10 +41,10 @@ importers:
         version: 0.4.0(eslint@9.17.0(jiti@1.21.7))(tailwindcss@3.4.17)(typescript@5.8.2)
       postcss:
         specifier: '8.5'
-        version: 8.5.1
+        version: 8.5.3
       repo-check:
-        specifier: '1.42'
-        version: 1.42.0
+        specifier: '1.43'
+        version: 1.43.0
       tailwindcss:
         specifier: '3.4'
         version: 3.4.17
@@ -1781,10 +1781,6 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.5.1:
-    resolution: {integrity: sha512-6oz2beyjc5VMn/KV1pPw8fliQkhBXrVn1Z3TVyqZxU8kZpzEKhBdmCFqI6ZbmGtamQvQGuU1sgPTk8ZrXDD7jQ==}
-    engines: {node: ^10 || ^12 || >=14}
-
   postcss@8.5.3:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
@@ -1853,8 +1849,8 @@ packages:
     resolution: {integrity: sha512-qx+xQGZVsy55CH0a1hiVwHmqjLryfh7wQyF5HO07XJ9f7dQMY/gPQHhlyDkIzJKC+x2fUCpCcUODUUUFrm7SHA==}
     hasBin: true
 
-  repo-check@1.42.0:
-    resolution: {integrity: sha512-AsmKM/MNM26fjJPqob8oMw+7m28/pLUMpH8u05AF1yHLOeW2S1+Hhx6iPSN1T3XBOsO0d7ol1WgCcVF75ZjTYA==}
+  repo-check@1.43.0:
+    resolution: {integrity: sha512-vKeQysGHFjT27m8kXUnspSdoIPnvXh+VXzj/XZHJzXbCCAWnn/pIUyJTWjtO5JhJcOeT+C0PyfloN7aBZHhXiA==}
     hasBin: true
 
   resolve-from@4.0.0:
@@ -1901,10 +1897,6 @@ packages:
   shebang-regex@3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
-
-  shuutils@10.5.0:
-    resolution: {integrity: sha512-XIBlpWI8zIRYV1f1hdIApAPtsThzqBkIoLfBpmbQY+RVTwDn3mtfJ/ir3ifhdsnoQjcDKkcdiJGdnoLje/KU3w==}
-    hasBin: true
 
   shuutils@10.6.0:
     resolution: {integrity: sha512-y3dveSrmnFKIxxIwKN6sSaX6nfCMK8WF20MJWzqqJ1DIFv7MBK9SXoJT4mU7F+w+yz3404vgnDD8wohWC7w1IA==}
@@ -3139,14 +3131,14 @@ snapshots:
 
   assertion-error@2.0.1: {}
 
-  autoprefixer@10.4.20(postcss@8.5.1):
+  autoprefixer@10.4.20(postcss@8.5.3):
     dependencies:
       browserslist: 4.24.3
       caniuse-lite: 1.0.30001690
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
-      postcss: 8.5.1
+      postcss: 8.5.3
       postcss-value-parser: 4.2.0
 
   babel-plugin-macros@3.1.0:
@@ -3429,7 +3421,7 @@ snapshots:
   eslint-plugin-tailwindcss@3.17.5(tailwindcss@3.4.17):
     dependencies:
       fast-glob: 3.3.2
-      postcss: 8.5.1
+      postcss: 8.5.3
       tailwindcss: 3.4.17
 
   eslint-plugin-unicorn@56.0.1(eslint@9.17.0(jiti@1.21.7)):
@@ -3946,28 +3938,28 @@ snapshots:
 
   pluralize@8.0.0: {}
 
-  postcss-import@15.1.0(postcss@8.5.1):
+  postcss-import@15.1.0(postcss@8.5.3):
     dependencies:
-      postcss: 8.5.1
+      postcss: 8.5.3
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.10
 
-  postcss-js@4.0.1(postcss@8.5.1):
+  postcss-js@4.0.1(postcss@8.5.3):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.5.1
+      postcss: 8.5.3
 
-  postcss-load-config@4.0.2(postcss@8.5.1):
+  postcss-load-config@4.0.2(postcss@8.5.3):
     dependencies:
       lilconfig: 3.1.3
       yaml: 2.6.1
     optionalDependencies:
-      postcss: 8.5.1
+      postcss: 8.5.3
 
-  postcss-nested@6.2.0(postcss@8.5.1):
+  postcss-nested@6.2.0(postcss@8.5.3):
     dependencies:
-      postcss: 8.5.1
+      postcss: 8.5.3
       postcss-selector-parser: 6.1.2
 
   postcss-selector-parser@6.1.2:
@@ -3976,12 +3968,6 @@ snapshots:
       util-deprecate: 1.0.2
 
   postcss-value-parser@4.2.0: {}
-
-  postcss@8.5.1:
-    dependencies:
-      nanoid: 3.3.8
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
 
   postcss@8.5.3:
     dependencies:
@@ -4055,10 +4041,10 @@ snapshots:
     dependencies:
       jsesc: 0.5.0
 
-  repo-check@1.42.0:
+  repo-check@1.43.0:
     dependencies:
       arg: 5.0.2
-      shuutils: 10.5.0
+      shuutils: 10.6.0
       sort-json: 2.0.1
 
   resolve-from@4.0.0: {}
@@ -4115,10 +4101,6 @@ snapshots:
       shebang-regex: 3.0.0
 
   shebang-regex@3.0.0: {}
-
-  shuutils@10.5.0:
-    dependencies:
-      tiny-glob: 0.2.9
 
   shuutils@10.6.0:
     dependencies:
@@ -4243,11 +4225,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.1
-      postcss-import: 15.1.0(postcss@8.5.1)
-      postcss-js: 4.0.1(postcss@8.5.1)
-      postcss-load-config: 4.0.2(postcss@8.5.1)
-      postcss-nested: 6.2.0(postcss@8.5.1)
+      postcss: 8.5.3
+      postcss-import: 15.1.0(postcss@8.5.3)
+      postcss-js: 4.0.1(postcss@8.5.3)
+      postcss-load-config: 4.0.2(postcss@8.5.3)
+      postcss-nested: 6.2.0(postcss@8.5.3)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.10
       sucrase: 3.35.0
