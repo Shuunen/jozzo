@@ -52,5 +52,6 @@ function App () {
 }
 
 const mountingElement = document.querySelector<HTMLElement>('#app')
+// eslint-disable-next-line no-restricted-syntax
 if (!mountingElement) throw new Error('Could not find #app')
 render(<App />, mountingElement)

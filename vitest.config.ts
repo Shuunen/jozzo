@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitest/config'
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default defineConfig({
   test: {
     coverage: {
@@ -10,5 +9,6 @@ export default defineConfig({
         100: true,
       },
     },
+    pool: 'threads',
   },
 })

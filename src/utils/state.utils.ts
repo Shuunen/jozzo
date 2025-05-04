@@ -23,7 +23,7 @@ export class Machine {
   /**
    * Check if the player won
    */
-  #checkWin () {
+  #checkWin() {
     const { bottles } = this.#context
     /* c8 ignore next 2 */
     if (bottles.every((bottle) => bottle.every((color) => color === bottle[0])))
@@ -34,8 +34,9 @@ export class Machine {
    * @param from the state to transition from
    * @param to the next state
    */
-  #transition (from: State, to: State) {
+  #transition(from: State, to: State) {
     logger.debug(`state transition ${from} => ${to} (actual ${this.state})`)
+    // eslint-disable-next-line no-restricted-syntax
     if (from !== this.state) throw new Error(`state cannot apply transition ${from} => ${to} (actual ${this.state})`)
     this.#context.state = to
   }
@@ -43,14 +44,14 @@ export class Machine {
    * Bottles getter
    * @returns the bottles
    */
-  public get bottles () {
+  public get bottles() {
     return this.#context.bottles
   }
   /**
    * Deselect a bottle
    * @param from the state to transition from
    */
-  public deselect (from: State = 'selected') {
+  public deselect(from: State = 'selected') {
     this.#transition(from, 'ready')
     this.#context.selected = -1
   }
@@ -58,7 +59,7 @@ export class Machine {
    * Get the icon for the current state
    * @returns the icon
    */
-  public icon () {
+  public icon() {
     const { state } = this
     /* c8 ignore next 7 */
     if (state === 'initial') return '🎬'
@@ -74,14 +75,15 @@ export class Machine {
    * @param index the index of the bottle to pour into
    */
   // eslint-disable-next-line max-statements
-  public async pour (index: number) {
+  public async pour(index: number) {
     this.#transition('selected', 'pouring')
     const { bottles, selected } = this.#context
     logger.info(`pouring bottle ${selected} into bottle ${index}`)
     await sleep(600) // eslint-disable-line @typescript-eslint/no-magic-numbers
     const from = bottles[selected]
     const to = bottles[index]
-    /* c8 ignore next */
+    /* c8 ignore next 2 */
+    // eslint-disable-next-line no-restricted-syntax
     if (!from || !to) throw new Error('bottle from/to not found')
     const [fromUpdated, toUpdated] = pour(from, to)
     bottles[selected] = fromUpdated
@@ -92,7 +94,7 @@ export class Machine {
   /**
    * Reset the game
    */
-  public reset () {
+  public reset() {
     this.deselect(this.state)
     this.#transition('ready', 'initial')
   }
@@ -100,7 +102,7 @@ export class Machine {
    * Select a bottle
    * @param index the index of the bottle to select
    */
-  public select (index: number) {
+  public select(index: number) {
     logger.debug('state select')
     this.#transition('ready', 'selected')
     this.#context.selected = index
@@ -109,13 +111,13 @@ export class Machine {
    * Selected getter
    * @returns the selected bottle
    */
-  public get selected () {
+  public get selected() {
     return this.#context.selected
   }
   /**
    * Start the game
    */
-  public start () {
+  public start() {
     logger.debug('state start')
     this.#transition('initial', 'ready')
     this.#context.bottles = getBottles()
@@ -124,7 +126,7 @@ export class Machine {
    * State getter
    * @returns the current state
    */
-  public get state () {
+  public get state() {
     return this.#context.state
   }
 }
