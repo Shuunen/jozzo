@@ -1,7 +1,5 @@
-// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   plugins: {
-    autoprefixer: {},
-    tailwindcss: {},
+    '@tailwindcss/postcss': {},
   },
 }

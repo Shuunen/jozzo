@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 :root {
   @apply text-zinc-900 bg-zinc-100;
@@ -8,6 +6,6 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-    @apply text-zinc-200 bg-gradient-to-tr from-10% from-zinc-800 to-zinc-950;
+    @apply text-zinc-200 bg-linear-to-tr from-10% from-zinc-800 to-zinc-950;
 	}
 }

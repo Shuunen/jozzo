@@ -1,10 +1,11 @@
-import shuunen from 'eslint-plugin-shuunen'
+import { base } from 'eslint-plugin-shuunen/configs/base'
+import { browser } from 'eslint-plugin-shuunen/configs/browser'
+import { typescript } from 'eslint-plugin-shuunen/configs/typescript'
 
 export default [
-  ...shuunen.configs.base,
-  // ...shuunen.configs.node,
-  ...shuunen.configs.browser,
-  ...shuunen.configs.typescript,
+  ...base,
+  ...browser,
+  ...typescript,
   {
     name: 'project-overrides',
     rules: {
