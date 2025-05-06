@@ -10,7 +10,7 @@
   "dependencies": {
     "@emotion/react": "11.14",
     "@emotion/styled": "11.14",
-    "@mui/material": "7.0",
+    "@mui/material": "7.1",
     "preact": "10.26",
     "shuutils": "10.6"
   },
