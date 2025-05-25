@@ -11,7 +11,7 @@ const pouringSoundTotalSegments = 8 // 0-1, 1-2, ..., 7-8
  */
 export function playPouringSound() {
   const segment = Math.floor(Math.random() * pouringSoundTotalSegments)
-  const audio = new Audio('/src/assets/tea-pouring.mp3')
+  const audio = new Audio('/tea-pouring.mp3')
   audio.currentTime = segment
   audio.volume = 1
   void audio.play()
