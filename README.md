@@ -33,9 +33,12 @@
 
 - [Boxy Svg](https://boxy-svg.com) : simple & effective svg editor
 - [Eslint](https://eslint.org) : super tool to find & fix problems
+- [Florian Reichelt](https://freesound.org/people/florianreichelt/sounds/459973/) : fireworks sound effect hosted on FreeSound
 - [FreeSound Community](https://pixabay.com/fr/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=86194) : pouring sound effect from Pixabay
 - [Github](https://github.com) : for all their great work year after year, pushing OSS forward
+- [IHateTuesdays](https://pixabay.com/users/ihatetuesdays-39387169/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=314073) : for the background music from Pixabay
 - [Netlify](https://netlify.com) : awesome company that offers free CI & hosting for OSS projects
+- [NonStop2k](https://www.nonstop2k.com/midi-files/14381-jojos-bizarre-adventure-golden-wind-ost-giornos-theme-il-vento-doro-main-theme-midi.html) : for the midi file of JoJo's Bizarre Adventure: Golden Wind OST Giorno's Theme, Il vento d'oro, Main Theme
 - [Paint bucket icon](https://uxwing.com/paint-bucket-icon/) : for the bucket icon
 - [React](https://reactjs.org) : great library for web and native user interfaces
 - [Repo-checker](https://github.com/Shuunen/repo-checker) : eslint cover /src code and this tool the rest ^^
