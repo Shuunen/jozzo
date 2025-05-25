@@ -12,21 +12,7 @@ import { machine } from './utils/state.utils'
  */
 function App () {
   const [state, setState] = useState<typeof machine['state']>('initial')
-  const [pouringInfo, setPouringInfo] = useState<undefined | {from: number, to: number}>()
   machine.watchContext('state', () => setState(machine.state))
-
-  // Patch pour to track pouring info
-  const origPour = machine.pour.bind(machine)
-  /**
-   * Pour handler with animation info
-   * @param to the index of the bottle to pour into
-   */
-  machine.pour = async (to: number) => {
-    setPouringInfo({ from: machine.selected, to })
-    await origPour(to)
-    setPouringInfo(undefined)
-  }
-
   console.count('render') // eslint-disable-line no-console
 
   return (
@@ -35,7 +21,7 @@ function App () {
       {state === 'initial' && <Button onClick={() => machine.start()} variant='contained'>Start game</Button>}
       {state !== 'initial' && <>
         <Button color='warning' onClick={() => machine.reset()} variant='contained'>Reset game</Button>
-        <BottleGrid pouringInfo={pouringInfo} state={state} />
+        <BottleGrid state={state} />
       </>}
       <pre>state : {state} <span className="text-2xl">{machine.icon()}</span></pre>
       <footer class="fixed bottom-2 right-5 mt-4 text-center text-xs font-thin text-gray-500">

@@ -1,33 +1,46 @@
-import { machine } from '../utils/state.utils';
-import { AppBottle } from './bottle';
+import { useState } from 'preact/hooks'
+import { machine } from '../utils/state.utils'
+import { AppBottle } from './bottle'
 
 /**
  * Grid of bottles for the game
- * @param root0 The props object
- * @param root0.pouringInfo Info about which bottle is pouring
- * @param root0.state Current game state
+ * @param properties The properties object
+ * @param properties.state Current game state
  * @returns JSX.Element
  */
-export function BottleGrid({
-  pouringInfo: gridPouringInfo,
-  state: gridState,
-}: {
-  pouringInfo: undefined | { from: number; to: number }
-  state: typeof machine['state']
-}) {
+// eslint-disable-next-line max-lines-per-function
+export function BottleGrid(properties: { state: typeof machine['state'] }) {
+  const { state } = properties
+  const [pouringInfo, setPouringInfo] = useState<undefined | { from: number; to: number }>()
+
   /**
-   * Handle the click event on a bottle
+   * Handles bottle selection and pouring logic
+   * @param index The index of the bottle
+   */
+  async function handleBottleSelection(index: number) {
+    if (index === machine.selected) {
+      machine.deselect()
+      return
+    }
+    if (machine.selected === -1) {
+      machine.select(index)
+      return
+    }
+    setPouringInfo({ from: machine.selected, to: index })
+    await machine.pour(index)
+    setPouringInfo(undefined)
+  }
+
+  /**
+   * Handles click on a bottle
    * @param event The click event
-   * @returns nothing
    */
   function handleBottleClick(event: Event) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
-    const element = event.target as HTMLElement
+    const element = event.target instanceof HTMLElement ? event.target : undefined
+    if (!element) return
     const index = Number(element.dataset.index)
-    if (Number.isNaN(index)) return void 0 // eslint-disable-line no-void
-    if (index === machine.selected) return machine.deselect()
-    if (machine.selected === -1) return machine.select(index)
-    return void machine.pour(index) // eslint-disable-line no-void
+    if (Number.isNaN(index)) return
+    void handleBottleSelection(index)
   }
 
   return (
@@ -37,8 +50,8 @@ export function BottleGrid({
           <AppBottle
             colors={bottle}
             index={index}
-            isPouring={gridPouringInfo !== undefined && gridPouringInfo.from === index && gridState === 'pouring'}
-            isPourTarget={gridPouringInfo !== undefined && gridPouringInfo.to === index && gridState === 'pouring'}
+            isPouring={pouringInfo !== undefined && pouringInfo.from === index && state === 'pouring'}
+            isPourTarget={pouringInfo !== undefined && pouringInfo.to === index && state === 'pouring'}
             isSelected={machine.selected === index}
             key={index}
           />
