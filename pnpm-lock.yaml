@@ -21,7 +21,7 @@ importers:
         specifier: '10.26'
         version: 10.26.7
       react-confetti-boom:
-        specifier: ^1.1.2
+        specifier: '1.1'
         version: 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       shuutils:
         specifier: '10.6'

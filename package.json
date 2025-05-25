@@ -12,7 +12,7 @@
     "@emotion/styled": "11.14",
     "@mui/material": "7.1",
     "preact": "10.26",
-    "react-confetti-boom": "^1.1.2",
+    "react-confetti-boom": "1.1",
     "shuutils": "10.6"
   },
   "description": "A color sort puzzle game",
