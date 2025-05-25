@@ -29,18 +29,15 @@ export function playPouringSound () {
   }, pouringSoundDurationMs - fadeDuration)
 }
 
-const backgroundMusic = new Audio('/jungle.mp3')
+export const backgroundMusic = new Audio('/jungle.mp3')
 backgroundMusic.volume = 0.5 // Set a lower volume for background music
 backgroundMusic.preload = 'auto'
 backgroundMusic.loop = true
 
-/**
- * Play the background music if it's not already playing.
- */
-export function playBackgroundMusic () {
-  if (backgroundMusic.paused) void backgroundMusic.play()
-}
-
 export const fireworksSound = new Audio('/fireworks.mp3')
 fireworksSound.volume = 1
 fireworksSound.preload = 'auto'
+
+export const winTheme = new Audio('/jojos-golden-wind.mp3')
+winTheme.volume = 1
+winTheme.preload = 'auto'

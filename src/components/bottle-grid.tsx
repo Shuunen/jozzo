@@ -1,6 +1,8 @@
 import { useState } from 'preact/hooks'
 import Confetti from 'react-confetti-boom'
-import { fireworksSound, playPouringSound } from '../utils/audio.utils'
+import { tw } from 'shuutils'
+import hat from '../assets/hat.svg?react'
+import { backgroundMusic, fireworksSound, playPouringSound, winTheme } from '../utils/audio.utils'
 import { machine } from '../utils/state.utils'
 import { AppBottle } from './bottle'
 
@@ -40,6 +42,15 @@ function handleBottleClick (event: Event, setPouringInfo: (info: PouringInfo) =>
 }
 
 /**
+ * Plays the win ceremony ^^
+ */
+function onWin () {
+  backgroundMusic.pause()
+  void fireworksSound.play()
+  void winTheme.play()
+}
+
+/**
  * Grid of bottles for the game
  * @param properties The properties object
  * @param properties.state Current game state
@@ -48,12 +59,12 @@ function handleBottleClick (event: Event, setPouringInfo: (info: PouringInfo) =>
 export function BottleGrid (properties: { state: typeof machine['state'] }) {
   const { state } = properties
   const [pouringInfo, setPouringInfo] = useState<PouringInfo>()
-  const isWin = state === 'win'
-  if (isWin) void fireworksSound.play()
+  const hasWon = state === 'win'
+  if (hasWon) onWin()
 
   return (
     <div className="my-6 flex justify-center">
-      {isWin && <Confetti mode='fall' />}
+      {hasWon && <Confetti mode='fall' />}
       <div className="grid grid-cols-3 gap-12" onClick={event => handleBottleClick(event, setPouringInfo)}>
         {machine.bottles.map((bottle, index) => (
           <AppBottle
@@ -66,7 +77,8 @@ export function BottleGrid (properties: { state: typeof machine['state'] }) {
           />
         ))}
       </div>
-      {isWin && <Confetti mode='boom' />}
+      {hasWon && <Confetti mode='boom' />}
+      {hasWon && hat({ className: tw('absolute h-64 hat-win-animation') }) /* eslint-disable-line unicorn/no-keyword-prefix */}
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { useState } from 'preact/hooks'
 import logo from './assets/logo-fillable.svg?react'
 import { BottleGrid } from './components/bottle-grid'
 import './style.css'
-import { playBackgroundMusic } from './utils/audio.utils'
+import { backgroundMusic } from './utils/audio.utils'
 import { machine } from './utils/state.utils'
 
 /**
@@ -19,7 +19,7 @@ function App () {
   // eslint-disable-next-line jsdoc/require-jsdoc
   function startGame () {
     machine.start()
-    playBackgroundMusic()
+    void backgroundMusic.play()
   }
 
   return (

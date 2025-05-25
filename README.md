@@ -37,6 +37,7 @@
 - [FreeSound Community](https://pixabay.com/fr/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=86194) : pouring sound effect from Pixabay
 - [Github](https://github.com) : for all their great work year after year, pushing OSS forward
 - [IHateTuesdays](https://pixabay.com/users/ihatetuesdays-39387169/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=314073) : for the background music from Pixabay
+- [MyInstants](https://www.myinstants.com/en/instant/jojos-giornos-theme-6619/) : for the JoJo's, Giorno's Theme
 - [Netlify](https://netlify.com) : awesome company that offers free CI & hosting for OSS projects
 - [NonStop2k](https://www.nonstop2k.com/midi-files/14381-jojos-bizarre-adventure-golden-wind-ost-giornos-theme-il-vento-doro-main-theme-midi.html) : for the midi file of JoJo's Bizarre Adventure: Golden Wind OST Giorno's Theme, Il vento d'oro, Main Theme
 - [Paint bucket icon](https://uxwing.com/paint-bucket-icon/) : for the bucket icon
