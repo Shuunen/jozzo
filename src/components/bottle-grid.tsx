@@ -1,7 +1,8 @@
 import { useState } from 'preact/hooks'
+import Confetti from 'react-confetti-boom'
+import { playPouringSound } from '../utils/audio.utils'
 import { machine } from '../utils/state.utils'
 import { AppBottle } from './bottle'
-import { playPouringSound } from '../utils/audio.utils'
 
 type PouringInfo = undefined | { from: number; to: number }
 
@@ -47,9 +48,11 @@ function handleBottleClick(event: Event, setPouringInfo: (info: PouringInfo) => 
 export function BottleGrid(properties: { state: typeof machine['state'] }) {
   const { state } = properties
   const [pouringInfo, setPouringInfo] = useState<PouringInfo>()
+  const isWin = state === 'win'
 
   return (
     <div className="my-6 flex justify-center">
+      {isWin && <Confetti mode='fall' />}
       <div className="grid grid-cols-3 gap-12" onClick={event => handleBottleClick(event, setPouringInfo)}>
         {machine.bottles.map((bottle, index) => (
           <AppBottle
@@ -62,6 +65,7 @@ export function BottleGrid(properties: { state: typeof machine['state'] }) {
           />
         ))}
       </div>
+      {isWin && <Confetti mode='boom' />}
     </div>
   )
 }
