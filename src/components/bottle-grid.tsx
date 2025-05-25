@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 import { machine } from '../utils/state.utils'
 import { AppBottle } from './bottle'
+import { playPouringSound } from '../utils/audio.utils'
 
 type PouringInfo = undefined | { from: number; to: number }
 
@@ -19,6 +20,7 @@ async function handleBottleSelection(index: number, setPouringInfo: (info: Pouri
     return
   }
   setPouringInfo({ from: machine.selected, to: index })
+  playPouringSound()
   await machine.pour(index)
   setPouringInfo(undefined)
 }
