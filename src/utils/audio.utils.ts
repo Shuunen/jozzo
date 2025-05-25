@@ -9,7 +9,7 @@ const pouringSoundTotalSegments = 8 // 0-1, 1-2, ..., 7-8
 /**
  * Play a random 1s segment of the tea-pouring sound with a fadeout effect.
  */
-export function playPouringSound() {
+export function playPouringSound () {
   const segment = Math.floor(Math.random() * pouringSoundTotalSegments)
   const audio = new Audio('/tea-pouring.mp3')
   audio.currentTime = segment
@@ -31,4 +31,15 @@ export function playPouringSound() {
       }
     }, fadeStepTime)
   }, pouringSoundDurationMs - fadeDuration)
+}
+
+const backgroundMusic = new Audio('/jungle.mp3')
+backgroundMusic.preload = 'auto'
+backgroundMusic.loop = true
+
+/**
+ * Play the background music if it's not already playing.
+ */
+export function playBackgroundMusic () {
+  if (backgroundMusic.paused) void backgroundMusic.play()
 }

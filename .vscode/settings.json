@@ -1,4 +1,7 @@
 {
+  "[javascript][javascriptreact][typescript][typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
   "cSpell.words": [
     "jozzo",
     "Jozzo",
