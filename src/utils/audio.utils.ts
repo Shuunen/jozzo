@@ -1,8 +1,4 @@
 /* c8 ignore start */
-
-/**
- * Play the tea-pouring sound for 1 second, starting at a random 1s segment each time.
- */
 const pouringSoundDurationMs = 1000
 const pouringSoundTotalSegments = 8 // 0-1, 1-2, ..., 7-8
 
@@ -11,10 +7,11 @@ const pouringSoundTotalSegments = 8 // 0-1, 1-2, ..., 7-8
  */
 export function playPouringSound () {
   const segment = Math.floor(Math.random() * pouringSoundTotalSegments)
-  const audio = new Audio('/tea-pouring.mp3')
-  audio.currentTime = segment
-  audio.volume = 1
-  void audio.play()
+  // declaring the sound outside mess up with the sound playback
+  const pouringSound = new Audio('/tea-pouring.mp3')
+  pouringSound.volume = 1
+  pouringSound.currentTime = segment
+  void pouringSound.play()
   // Fade out over the last 200ms
   const fadeDuration = 200
   const fadeSteps = 10
@@ -23,17 +20,17 @@ export function playPouringSound () {
     let currentStep = 0
     const fadeInterval = setInterval(() => {
       currentStep += 1
-      audio.volume = Math.max(0, 1 - currentStep / fadeSteps)
+      pouringSound.volume = Math.max(0, 1 - currentStep / fadeSteps)
       if (currentStep >= fadeSteps) {
         clearInterval(fadeInterval)
-        audio.pause()
-        audio.currentTime = 0
+        pouringSound.pause()
       }
     }, fadeStepTime)
   }, pouringSoundDurationMs - fadeDuration)
 }
 
 const backgroundMusic = new Audio('/jungle.mp3')
+backgroundMusic.volume = 0.5 // Set a lower volume for background music
 backgroundMusic.preload = 'auto'
 backgroundMusic.loop = true
 
@@ -43,3 +40,7 @@ backgroundMusic.loop = true
 export function playBackgroundMusic () {
   if (backgroundMusic.paused) void backgroundMusic.play()
 }
+
+export const fireworksSound = new Audio('/fireworks.mp3')
+fireworksSound.volume = 1
+fireworksSound.preload = 'auto'
