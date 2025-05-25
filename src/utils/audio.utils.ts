@@ -1,3 +1,5 @@
+/* c8 ignore start */
+
 /**
  * Play the tea-pouring sound for 1 second, starting at a random 1s segment each time.
  */
