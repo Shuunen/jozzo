@@ -33,6 +33,7 @@
 
 - [Boxy Svg](https://boxy-svg.com) : simple & effective svg editor
 - [Eslint](https://eslint.org) : super tool to find & fix problems
+- [FreeSound Community](https://pixabay.com/fr/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=86194) : pouring sound effect from Pixabay
 - [Github](https://github.com) : for all their great work year after year, pushing OSS forward
 - [Netlify](https://netlify.com) : awesome company that offers free CI & hosting for OSS projects
 - [Paint bucket icon](https://uxwing.com/paint-bucket-icon/) : for the bucket icon
@@ -46,10 +47,6 @@
 - [Vite](https://github.com/vitejs/vite) : super fast frontend tooling
 - [Vitest](https://github.com/vitest-dev/vitest) : super fast vite-native testing framework
 
-## Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/Shuunen/jozzo.svg?variant=adaptive)](https://starchart.cc/Shuunen/jozzo)
-
 ## Page views
 
-[![Free Website Counter](https://www.websitecounterfree.com/c.php?d=9&id=64383&s=12)](https://www.websitecounterfree.com)
+[![Views Counter](https://views-counter.vercel.app/badge?pageId=Shuunen%2Fjozzo&leftColor=5c5c5c&rightColor=07a62f&type=total&label=Visitors&style=none)](https://github.com/Kumara2mahe/Views-Counter)
