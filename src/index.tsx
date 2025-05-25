@@ -2,7 +2,7 @@ import Button from '@mui/material/Button'
 import { render } from 'preact'
 import { useState } from 'preact/hooks'
 import logo from './assets/logo-fillable.svg?react'
-import { AppBottle } from './components/bottle'
+import { BottleGrid } from './components/bottle-grid'
 import './style.css'
 import { machine } from './utils/state.utils'
 
@@ -12,24 +12,22 @@ import { machine } from './utils/state.utils'
  */
 function App () {
   const [state, setState] = useState<typeof machine['state']>('initial')
+  const [pouringInfo, setPouringInfo] = useState<undefined | {from: number, to: number}>()
   machine.watchContext('state', () => setState(machine.state))
 
-  console.count('render') // eslint-disable-line no-console
-
+  // Patch pour to track pouring info
+  const origPour = machine.pour.bind(machine)
   /**
-   * Handle the click event on a bottle
-   * @param event the click event
-   * @returns nothing
+   * Pour handler with animation info
+   * @param to the index of the bottle to pour into
    */
-  function onClick (event: Event) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
-    const element = event.target as HTMLElement
-    const index = Number(element.dataset.index)
-    if (Number.isNaN(index)) return void 0 // eslint-disable-line no-void
-    if (index === machine.selected) return machine.deselect()
-    if (machine.selected === -1) return machine.select(index)
-    return void machine.pour(index) // eslint-disable-line no-void
+  machine.pour = async (to: number) => {
+    setPouringInfo({ from: machine.selected, to })
+    await origPour(to)
+    setPouringInfo(undefined)
   }
+
+  console.count('render') // eslint-disable-line no-console
 
   return (
     <div className="container mx-auto flex h-screen w-full max-w-xl flex-col items-center justify-center gap-6 md:justify-start" >
@@ -37,11 +35,7 @@ function App () {
       {state === 'initial' && <Button onClick={() => machine.start()} variant='contained'>Start game</Button>}
       {state !== 'initial' && <>
         <Button color='warning' onClick={() => machine.reset()} variant='contained'>Reset game</Button>
-        <div className="my-6 flex justify-center">
-          <div className="grid grid-cols-3 gap-12" onClick={onClick}>
-            {machine.bottles.map((bottle, index) => <AppBottle colors={bottle} index={index} isSelected={machine.selected === index} key={index} />)}
-          </div>
-        </div>
+        <BottleGrid pouringInfo={pouringInfo} state={state} />
       </>}
       <pre>state : {state} <span className="text-2xl">{machine.icon()}</span></pre>
       <footer class="fixed bottom-2 right-5 mt-4 text-center text-xs font-thin text-gray-500">

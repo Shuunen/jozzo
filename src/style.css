@@ -9,3 +9,28 @@
     @apply text-zinc-200 bg-linear-to-tr from-10% from-zinc-800 to-zinc-950;
 	}
 }
+
+.bottle-pouring {
+  z-index: 10;
+  animation: bottle-pour-move 0.6s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+
+@keyframes bottle-pour-move {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-60px) rotate(-30deg);
+  }
+  70% {
+    transform: translateY(-60px) rotate(-30deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.bottle-pour-target {
+  z-index: 9;
+  filter: drop-shadow(0 0 8px #facc15);
+}
