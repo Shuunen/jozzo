@@ -2,7 +2,7 @@ import { useState } from 'preact/hooks'
 import Confetti from 'react-confetti-boom'
 import { tw } from 'shuutils'
 import hat from '../assets/hat.svg?react'
-import { backgroundMusic, fireworksSound, playPouringSound, winTheme } from '../utils/audio.utils'
+import { playPouringSound, winEffects } from '../utils/effects.utils'
 import { machine } from '../utils/state.utils'
 import { AppBottle } from './bottle'
 
@@ -42,15 +42,6 @@ function handleBottleClick (event: Event, setPouringInfo: (info: PouringInfo) =>
 }
 
 /**
- * Plays the win ceremony ^^
- */
-function onWin () {
-  backgroundMusic.pause()
-  void fireworksSound.play()
-  void winTheme.play()
-}
-
-/**
  * Grid of bottles for the game
  * @param properties The properties object
  * @param properties.state Current game state
@@ -60,7 +51,7 @@ export function BottleGrid (properties: { state: typeof machine['state'] }) {
   const { state } = properties
   const [pouringInfo, setPouringInfo] = useState<PouringInfo>()
   const hasWon = state === 'win'
-  if (hasWon) onWin()
+  if (hasWon) winEffects()
 
   return (
     <div className="my-6 flex justify-center">

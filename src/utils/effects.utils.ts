@@ -38,6 +38,29 @@ export const fireworksSound = new Audio('/fireworks.mp3')
 fireworksSound.volume = 1
 fireworksSound.preload = 'auto'
 
-export const winTheme = new Audio('/jojos-golden-wind.mp3')
+const winTheme = new Audio('/jojos-golden-wind.mp3')
 winTheme.volume = 1
 winTheme.preload = 'auto'
+
+/**
+ * Setup the background music and effects when the game starts.
+ */
+export function startEffects () {
+  winTheme.pause()
+  winTheme.currentTime = 0
+  if (backgroundMusic.paused) {
+    backgroundMusic.currentTime = 0
+    void backgroundMusic.play()
+  }
+  document.documentElement.classList.remove('color')
+}
+
+/**
+ * Plays the win ceremony effects: stops background music, plays fireworks and win theme ^^
+ */
+export function winEffects () {
+  backgroundMusic.pause()
+  void fireworksSound.play()
+  void winTheme.play()
+  document.documentElement.classList.add('color')
+}

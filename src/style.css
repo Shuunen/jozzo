@@ -10,6 +10,10 @@
 	}
 }
 
+.color:root {
+  @apply bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500;
+}
+
 .bottle-pouring {
   z-index: 10;
   animation: bottle-pour-move 0.6s cubic-bezier(0.4,0,0.2,1) forwards;
