@@ -21,8 +21,8 @@ importers:
         specifier: '10.26'
         version: 10.26.7
       react-confetti-boom:
-        specifier: '1.1'
-        version: 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: '2.0'
+        version: 2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       shuutils:
         specifier: '10.6'
         version: 10.6.0
@@ -1848,8 +1848,8 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  react-confetti-boom@1.1.2:
-    resolution: {integrity: sha512-JeJojpoIcF5xcNhkM3ifCW+XL6ScTOJUrr4eTLcrwa0rrLqc9hW3DTyn2IJ806PGWJHp2PjpMyWS2h0SAoadzg==}
+  react-confetti-boom@2.0.0:
+    resolution: {integrity: sha512-KWH1NbONktnT3oEdd+PW0YQqa2spkU6Al3/bAxKoa8Y8bnI+tYFgPT17yhm8VmPyYQ2D66V+5g9uIHjU0nOgTQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       react: '>=16.8.0'
@@ -4000,7 +4000,7 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  react-confetti-boom@1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  react-confetti-boom@2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
