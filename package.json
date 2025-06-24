@@ -25,7 +25,7 @@
     "repo-check": "1.45",
     "tailwindcss": "4.1",
     "typescript": "5.8",
-    "vite": "6.3",
+    "vite": "7.0",
     "vite-plugin-svgr": "4.3",
     "vitest": "3.2"
   },
