@@ -8,6 +8,12 @@
 
 > A color sort puZZle that has nothing to do with &lt;3 JoJo's Bizarre Adventure &lt;3
 
+## Archived
+
+This repo is archived since it migrated to [Shuunen/monorepo](https://github.com/Shuunen/monorepo/tree/master/apps/jozzo).
+
+Further development will be done there 🚀
+
 ## Demo
 
 [Try it online](https://jozzo.netlify.app)
