@@ -1,33 +1,37 @@
-/* c8 ignore start */
-/* eslint-disable @typescript-eslint/no-magic-numbers, max-statements -- audio tuning values, each one is a taste setting */
+/* v8 ignore start */
+/* oxlint-disable @typescript-eslint/no-magic-numbers -- audio tuning values, each one is a taste setting */
 
-type PourSound = {
+interface PourSound {
   /** Stop the sound with a short fade out */
   readonly stop: () => void
   /** Follow the pour: how full the target is (0-1), how much liquid falls (0-1), seconds since the last update */
   readonly update: (fill: number, intensity: number, delta: number) => void
 }
 
-let audioContext: AudioContext | undefined // eslint-disable-line @typescript-eslint/init-declarations
-let noiseBuffer: AudioBuffer | undefined // eslint-disable-line @typescript-eslint/init-declarations
+let audioContext: AudioContext | undefined // oxlint-disable-line @typescript-eslint/init-declarations
+let noiseBuffer: AudioBuffer | undefined // oxlint-disable-line @typescript-eslint/init-declarations
 
 const silentSound: PourSound = {
   /** Nothing to stop, audio is not available */
-  stop () { /* silent */ },
+  stop() {
+    /* silent */
+  },
   /** Nothing to update, audio is not available */
-  update () { /* silent */ },
+  update() {
+    /* silent */
+  },
 }
 
 /**
  * Get the shared audio context, created on first use (after a user gesture)
  * @returns the context or undefined if not available
  */
-function getAudioContext () {
+function getAudioContext() {
   if (audioContext === undefined)
     try {
       audioContext = new AudioContext()
     } catch {
-      return undefined // eslint-disable-line unicorn/no-useless-undefined
+      return undefined
     }
   if (audioContext.state === 'suspended') void audioContext.resume()
   return audioContext
@@ -38,7 +42,7 @@ function getAudioContext () {
  * @param context the audio context
  * @returns the buffer
  */
-function getNoiseBuffer (context: AudioContext) {
+function getNoiseBuffer(context: AudioContext) {
   if (noiseBuffer) return noiseBuffer
   const buffer = context.createBuffer(1, context.sampleRate * 2, context.sampleRate)
   const data = buffer.getChannelData(0)
@@ -57,7 +61,7 @@ function getNoiseBuffer (context: AudioContext) {
  * @param destination where to send the sound
  * @param frequency the starting frequency
  */
-function playBubble (context: AudioContext, destination: AudioNode, frequency: number) {
+function playBubble(context: AudioContext, destination: AudioNode, frequency: number) {
   const now = context.currentTime
   const oscillator = context.createOscillator()
   const gain = context.createGain()
@@ -76,7 +80,7 @@ function playBubble (context: AudioContext, destination: AudioNode, frequency: n
  * a bit of splash and some bubbles. Drive it with update on each frame, and call stop at the end.
  * @returns the controls of the sound
  */
-export function createPourSound () {
+export function createPourSound() {
   const context = getAudioContext()
   if (!context) return silentSound
   const noise = context.createBufferSource()
@@ -100,7 +104,7 @@ export function createPourSound () {
   noise.start()
   return {
     /** Stop the sound with a short fade out */
-    stop () {
+    stop() {
       master.gain.setTargetAtTime(0, context.currentTime, 0.03)
       setTimeout(() => {
         noise.stop()
@@ -114,7 +118,7 @@ export function createPourSound () {
      * @param intensity how much liquid falls, from 0 to 1
      * @param delta seconds since the last update
      */
-    update (fill: number, intensity: number, delta: number) {
+    update(fill: number, intensity: number, delta: number) {
       const now = context.currentTime
       // two octaves from an empty to a full bottle
       const frequency = 350 * 2 ** (Math.min(1, Math.max(0, fill)) * 2)

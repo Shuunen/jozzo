@@ -9,6 +9,9 @@ export default defineConfig({
         100: true,
       },
     },
+    globals: true,
     pool: 'threads',
+    reporters: ['dot'],
+    silent: true,
   },
 })

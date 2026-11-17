@@ -1,13 +1,13 @@
 @import 'tailwindcss';
 
 :root {
-  @apply text-zinc-900 bg-zinc-100;
+  @apply bg-zinc-100 text-zinc-900;
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-    @apply text-zinc-200 bg-linear-to-tr from-10% from-zinc-800 to-zinc-950;
-	}
+  :root {
+    @apply bg-linear-to-tr from-zinc-800 from-10% to-zinc-950 text-zinc-200;
+  }
 }
 
 .color:root {
@@ -45,7 +45,9 @@
 }
 
 .hat-win-animation {
-  animation: zoom-in 5s ease-out, heartbeat 1.2s infinite;
+  animation:
+    zoom-in 5s ease-out,
+    heartbeat 1.2s infinite;
 }
 
 @keyframes zoom-in {
@@ -62,13 +64,16 @@
 }
 
 @keyframes heartbeat {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
-  10%, 30% {
+  10%,
+  30% {
     transform: scale(1.1);
   }
-  20%, 40% {
+  20%,
+  40% {
     transform: scale(0.95);
   }
   50% {

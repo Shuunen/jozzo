@@ -1,11 +1,11 @@
-/* c8 ignore start */
+/* v8 ignore start */
 const pouringSoundDurationMs = 1000
 const pouringSoundTotalSegments = 8 // 0-1, 1-2, ..., 7-8
 
 /**
  * Play a random 1s segment of the tea-pouring sound with a fadeout effect.
  */
-export function playPouringSound () {
+export function playPouringSound() {
   const segment = Math.floor(Math.random() * pouringSoundTotalSegments)
   // declaring the sound outside mess up with the sound playback
   const pouringSound = new Audio('/tea-pouring.mp3')
@@ -29,12 +29,12 @@ export function playPouringSound () {
   }, pouringSoundDurationMs - fadeDuration)
 }
 
-export const backgroundMusic = new Audio('/jungle.mp3')
+const backgroundMusic = new Audio('/jungle.mp3')
 backgroundMusic.volume = 0.5 // Set a lower volume for background music
 backgroundMusic.preload = 'auto'
 backgroundMusic.loop = true
 
-export const fireworksSound = new Audio('/fireworks.mp3')
+const fireworksSound = new Audio('/fireworks.mp3')
 fireworksSound.volume = 1
 fireworksSound.preload = 'auto'
 
@@ -45,7 +45,7 @@ winTheme.preload = 'auto'
 /**
  * Setup the background music and effects when the game starts.
  */
-export function startEffects () {
+export function startEffects() {
   winTheme.pause()
   winTheme.currentTime = 0
   if (backgroundMusic.paused) {
@@ -58,7 +58,7 @@ export function startEffects () {
 /**
  * Plays the win ceremony effects: stops background music, plays fireworks and win theme ^^
  */
-export function winEffects () {
+export function winEffects() {
   backgroundMusic.pause()
   void fireworksSound.play()
   void winTheme.play()

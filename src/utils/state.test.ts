@@ -1,10 +1,8 @@
 import { sleep } from 'shuutils'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { logger } from './logger.utils'
 import { Machine } from './state.utils'
 
 describe('state', () => {
-
   beforeAll(() => {
     logger.disable()
   })
@@ -14,6 +12,7 @@ describe('state', () => {
   })
 
   it('state A initial > ready > selected', () => {
+    expect.hasAssertions()
     const machine = new Machine()
     expect(machine.state).toBe('initial')
     machine.start()
@@ -23,12 +22,16 @@ describe('state', () => {
   })
 
   it('state B initial cannot go into selected', () => {
+    expect.hasAssertions()
     const machine = new Machine()
     expect(machine.state).toBe('initial')
-    expect(() => machine.select(2)).toThrowError()
+    expect(() => {
+      machine.select(2)
+    }).toThrow(/./u)
   })
 
   it('state C selected > ready', () => {
+    expect.hasAssertions()
     const machine = new Machine()
     machine.start()
     machine.select(2)
@@ -37,6 +40,7 @@ describe('state', () => {
   })
 
   it('state D selected > pouring > ready', async () => {
+    expect.hasAssertions()
     const machine = new Machine()
     machine.start()
     machine.select(2)
@@ -47,6 +51,7 @@ describe('state', () => {
   })
 
   it('state E get selected', () => {
+    expect.hasAssertions()
     const machine = new Machine()
     machine.start()
     machine.select(2)
@@ -54,6 +59,7 @@ describe('state', () => {
   })
 
   it('state F reset', () => {
+    expect.hasAssertions()
     const machine = new Machine()
     machine.start()
     machine.select(2)
@@ -62,14 +68,14 @@ describe('state', () => {
   })
 
   it('state G icon', () => {
+    expect.hasAssertions()
     const machine = new Machine()
-    expect(machine.icon().length).toBe(2)
+    expect(machine.icon()).toHaveLength(2)
   })
 
   it('state H get bottles', () => {
+    expect.hasAssertions()
     const machine = new Machine()
-    expect(machine.bottles.length).toBe(0)
+    expect(machine.bottles).toHaveLength(0)
   })
-
-
 })

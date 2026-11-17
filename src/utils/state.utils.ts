@@ -4,21 +4,24 @@ import type { Bottle } from './colors.utils'
 import { logger } from './logger.utils'
 
 /** Duration of the pouring animation in ms, keep in sync with --pour-duration usage */
-export const pouringDuration = 1800
+const pouringDuration = 1800
 
 type State = 'initial' | 'loose' | 'pouring' | 'ready' | 'selected' | 'win'
 
-type Context = { bottles: Bottle[]; selected: number; state: State }
+interface Context {
+  bottles: Bottle[]
+  selected: number
+  state: State
+}
 
 /**
  * Vanilla state machine <3
  */
-// eslint-disable-next-line no-restricted-syntax
 export class Machine {
   readonly #context: Context = { bottles: [], selected: -1, state: 'initial' }
   public readonly watchContext: (key: keyof Context, callback: () => void) => void
   /** Constructor */
-  public constructor () {
+  public constructor() {
     const { state, watchState } = createState<Context>(this.#context)
     this.#context = state
     this.watchContext = watchState
@@ -28,9 +31,8 @@ export class Machine {
    */
   #checkWin() {
     const { bottles } = this.#context
-    /* c8 ignore next 2 */
-    if (bottles.every((bottle) => bottle.every((color) => color === bottle[0])))
-      this.#transition('ready', 'win')
+    /* v8 ignore next 2 */
+    if (bottles.every(bottle => bottle.every(color => color === bottle[0]))) this.#transition('ready', 'win')
   }
   /**
    * Transition from one state to another
@@ -39,7 +41,6 @@ export class Machine {
    */
   #transition(from: State, to: State) {
     logger.debug(`state transition ${from} => ${to} (actual ${this.state})`)
-    // eslint-disable-next-line no-restricted-syntax
     if (from !== this.state) throw new Error(`state cannot apply transition ${from} => ${to} (actual ${this.state})`)
     this.#context.state = to
   }
@@ -64,21 +65,21 @@ export class Machine {
    */
   public icon() {
     const { state } = this
-    /* c8 ignore next 7 */
+    /* v8 ignore start */
     if (state === 'initial') return '🎬'
     if (state === 'ready') return '🏎️'
     if (state === 'selected') return '🏹'
     if (state === 'pouring') return '💧'
     if (state === 'win') return '🥳'
-    if (state === 'loose') return '😭' // eslint-disable-line @typescript-eslint/no-unnecessary-condition
+    if (state === 'loose') return '😭' // oxlint-disable-line @typescript-eslint/no-unnecessary-condition
     return '🤔'
+    /* v8 ignore stop */
   }
   /**
    * Pour the selected bottle into another bottle
    * @param index the index of the bottle to pour into
    * @param duration how long the pouring lasts in ms
    */
-  // eslint-disable-next-line max-statements
   public async pour(index: number, duration = pouringDuration) {
     this.#transition('selected', 'pouring')
     const { bottles, selected } = this.#context
@@ -86,8 +87,7 @@ export class Machine {
     await sleep(duration)
     const from = bottles[selected]
     const to = bottles[index]
-    /* c8 ignore next 2 */
-    // eslint-disable-next-line no-restricted-syntax
+    /* v8 ignore next 2 */
     if (!from || !to) throw new Error('bottle from/to not found')
     const [fromUpdated, toUpdated] = pour(from, to)
     bottles[selected] = fromUpdated

@@ -1,7 +1,7 @@
-/* c8 ignore start */
-/* eslint-disable @typescript-eslint/no-magic-numbers, @typescript-eslint/max-params, complexity, id-length, max-lines, max-lines-per-function, max-statements -- numeric simulation: tuning values and geometry, split by physical step rather than by line count */
-import { pour } from './bottle.utils'
 import { type Point, interiorBottom, interiorPoints, interiorTop, neckHalfWidth, slotHeight } from './bottle-shape.utils'
+/* v8 ignore start */
+/* oxlint-disable @typescript-eslint/no-magic-numbers, @typescript-eslint/max-params, id-length, max-lines, max-depth -- numeric simulation: tuning values and geometry, split by physical step rather than by line count */
+import { pour } from './bottle.utils'
 import type { Bottle, Color } from './colors.utils'
 import { createPourSound } from './pour-sound.utils'
 
@@ -13,11 +13,24 @@ import { createPourSound } from './pour-sound.utils'
  * - the bottle element itself (the glass, drawn above the canvas) is moved by css transform, in sync with the canvas
  */
 
-type Particle = { isSplash: boolean; radius: number; vx: number; vy: number; x: number; y: number }
+interface Particle {
+  isSplash: boolean
+  radius: number
+  vx: number
+  vy: number
+  x: number
+  y: number
+}
 
-type Bubble = { phase: number; radius: number; vy: number; x: number; y: number }
+interface Bubble {
+  phase: number
+  radius: number
+  vy: number
+  x: number
+  y: number
+}
 
-type PourOptions = {
+interface PourOptions {
   readonly from: number
   readonly fromBottle: Readonly<Bottle>
   readonly to: number
@@ -43,7 +56,7 @@ const filterId = 'jozzo-goo'
  * @param radians the angle
  * @returns the rotated point
  */
-function rotate (point: Point, radians: number) {
+function rotate(point: Point, radians: number) {
   const cos = Math.cos(radians)
   const sin = Math.sin(radians)
   return { x: point.x * cos - point.y * sin, y: point.x * sin + point.y * cos }
@@ -54,8 +67,8 @@ function rotate (point: Point, radians: number) {
  * @param radians the rotation
  * @returns the points
  */
-function getCorners (radians: number) {
-  return interiorPoints.map((point) => rotate(point, radians))
+function getCorners(radians: number) {
+  return interiorPoints.map(point => rotate(point, radians))
 }
 
 /**
@@ -64,7 +77,7 @@ function getCorners (radians: number) {
  * @param level the y of the line
  * @returns the area
  */
-function getAreaBelow (corners: Point[], level: number) {
+function getAreaBelow(corners: Point[], level: number) {
   const clipped: Point[] = []
   for (const [index, a] of corners.entries()) {
     const b = corners[(index + 1) % corners.length] ?? a
@@ -90,8 +103,8 @@ function getAreaBelow (corners: Point[], level: number) {
  * @param volume the volume of liquid
  * @returns the y of the surface, relative to the bottle center
  */
-function getLevel (corners: Point[], volume: number) {
-  const ys = corners.map((corner) => corner.y)
+function getLevel(corners: Point[], volume: number) {
+  const ys = corners.map(corner => corner.y)
   let low = Math.min(...ys)
   let high = Math.max(...ys)
   for (let step = 0; step < 36; step += 1) {
@@ -109,7 +122,7 @@ const uprightCorners = getCorners(0)
  * @param layers the number of layers
  * @returns the volume
  */
-function getVolume (layers: number) {
+function getVolume(layers: number) {
   return getAreaBelow(uprightCorners, interiorBottom - layers * slotHeight)
 }
 
@@ -119,7 +132,7 @@ function getVolume (layers: number) {
  * @param direction 1 to tilt to the right, -1 to the left
  * @returns the tilt in degrees (positive)
  */
-function getLipTilt (volume: number, direction: number) {
+function getLipTilt(volume: number, direction: number) {
   const corner = { x: direction * neckHalfWidth, y: interiorTop }
   let low = 0
   let high = maxTilt
@@ -138,9 +151,9 @@ function getLipTilt (volume: number, direction: number) {
  * @param value between 0 and 1
  * @returns the eased value
  */
-function ease (value: number) {
+function ease(value: number) {
   const clamped = Math.min(1, Math.max(0, value))
-  return clamped < 0.5 ? 4 * clamped ** 3 : 1 - ((-2 * clamped + 2) ** 3) / 2
+  return clamped < 0.5 ? 4 * clamped ** 3 : 1 - (-2 * clamped + 2) ** 3 / 2
 }
 
 /**
@@ -148,9 +161,9 @@ function ease (value: number) {
  * @param color the color name
  * @returns the css color
  */
-function resolveColor (color: Color) {
+function resolveColor(color: Color) {
   const probe = document.createElement('div')
-  probe.className = `bg-${color}-500` // eslint-disable-line unicorn/no-keyword-prefix
+  probe.className = `bg-${color}-500`
   document.body.append(probe)
   const resolved = getComputedStyle(probe).backgroundColor
   probe.remove()
@@ -160,7 +173,7 @@ function resolveColor (color: Color) {
 /**
  * Add the svg filter that merges particles into one liquid body
  */
-function ensureGooFilter () {
+function ensureGooFilter() {
   if (document.querySelector(`#${filterId}`)) return
   const wrapper = document.createElement('div')
   wrapper.innerHTML = `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="${filterId}" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" /><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8" /></filter></defs></svg>`
@@ -173,7 +186,7 @@ function ensureGooFilter () {
  * @param filter the optional css filter
  * @returns the canvas and its context
  */
-function createCanvas (zIndex: number, filter = '') {
+function createCanvas(zIndex: number, filter = '') {
   const ratio = window.devicePixelRatio || 1
   const canvas = document.createElement('canvas')
   canvas.width = Math.round(window.innerWidth * ratio)
@@ -181,7 +194,6 @@ function createCanvas (zIndex: number, filter = '') {
   canvas.style.cssText = `position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:${zIndex};${filter ? `filter:${filter};` : ''}`
   document.body.append(canvas)
   const context = canvas.getContext('2d')
-  // eslint-disable-next-line no-restricted-syntax
   if (!context) throw new Error('canvas context not available')
   return { canvas, context, ratio }
 }
@@ -196,24 +208,24 @@ function createCanvas (zIndex: number, filter = '') {
  * @param amplitude the amplitude of the waves at the surface
  * @param time the time in ms
  */
-function drawLiquid (context: CanvasRenderingContext2D, center: Point, radians: number, bands: string[], volume: number, amplitude: number, time: number) {
+function drawLiquid(context: CanvasRenderingContext2D, center: Point, radians: number, bands: string[], volume: number, amplitude: number, time: number) {
   const corners = getCorners(radians)
-  const absolute = corners.map((corner) => ({ x: corner.x + center.x, y: corner.y + center.y }))
-  const minX = Math.min(...absolute.map((corner) => corner.x)) - 2
-  const maxX = Math.max(...absolute.map((corner) => corner.x)) + 2
-  const bottomY = Math.max(...absolute.map((corner) => corner.y)) + 2
+  const absolute = corners.map(corner => ({ x: corner.x + center.x, y: corner.y + center.y }))
+  const minX = Math.min(...absolute.map(corner => corner.x)) - 2
+  const maxX = Math.max(...absolute.map(corner => corner.x)) + 2
+  const bottomY = Math.max(...absolute.map(corner => corner.y)) + 2
   /**
    * Height of the waves at the surface
    * @param x the horizontal position
    * @returns the vertical offset
    */
-  const wave = (x: number) => amplitude * (Math.sin(x * 0.16 + time * 0.008) + 0.5 * Math.sin(x * 0.31 - time * 0.011)) / 1.5
+  const wave = (x: number) => (amplitude * (Math.sin(x * 0.16 + time * 0.008) + 0.5 * Math.sin(x * 0.31 - time * 0.011))) / 1.5
   context.save()
   context.beginPath()
-  for (const [index, corner] of absolute.entries()) 
+  for (const [index, corner] of absolute.entries())
     if (index === 0) context.moveTo(corner.x, corner.y)
     else context.lineTo(corner.x, corner.y)
-  
+
   context.closePath()
   context.clip()
   // from the top to the bottom, each band covers everything under its surface
@@ -249,14 +261,14 @@ function drawLiquid (context: CanvasRenderingContext2D, center: Point, radians: 
  * @param bubbles the bubbles
  * @param alpha the opacity
  */
-function drawBubbles (context: CanvasRenderingContext2D, center: Point, bubbles: Bubble[], alpha: number) {
+function drawBubbles(context: CanvasRenderingContext2D, center: Point, bubbles: Bubble[], alpha: number) {
   if (bubbles.length === 0 || alpha <= 0) return
   context.save()
   context.beginPath()
-  for (const [index, corner] of uprightCorners.entries()) 
+  for (const [index, corner] of uprightCorners.entries())
     if (index === 0) context.moveTo(corner.x + center.x, corner.y + center.y)
     else context.lineTo(corner.x + center.x, corner.y + center.y)
-  
+
   context.closePath()
   context.clip()
   context.globalAlpha = alpha
@@ -281,7 +293,7 @@ function drawBubbles (context: CanvasRenderingContext2D, center: Point, bubbles:
  * Freeze the position of an element (selection and hover offsets) so it does not move while we animate it
  * @param element the element
  */
-function freeze (element: HTMLElement) {
+function freeze(element: HTMLElement) {
   element.style.translate = getComputedStyle(element).translate
   element.style.transition = 'none'
 }
@@ -290,7 +302,7 @@ function freeze (element: HTMLElement) {
  * Release an element frozen
  * @param element the element
  */
-function release (element: HTMLElement) {
+function release(element: HTMLElement) {
   element.style.translate = ''
   element.style.transition = ''
   element.style.transform = ''
@@ -301,8 +313,8 @@ function release (element: HTMLElement) {
  * @param bottle the bottle
  * @returns the colors, from the top to the bottom
  */
-function getFilled (bottle: Readonly<Bottle>) {
-  return bottle.filter((color) => color !== '')
+function getFilled(bottle: Readonly<Bottle>) {
+  return bottle.filter(color => color !== '')
 }
 
 /**
@@ -314,21 +326,25 @@ function getFilled (bottle: Readonly<Bottle>) {
  * @param options.toBottle the content of the target bottle
  * @returns undefined if nothing to animate, else the duration and a promise resolved at the end
  */
-export function animatePour (options: PourOptions) {
+export function animatePour(options: PourOptions) {
   const { from, fromBottle, to, toBottle } = options
   const [fromAfter] = pour(fromBottle, toBottle)
   const poured = getFilled(fromBottle).length - getFilled(fromAfter).length
   const fromElement = document.querySelector<HTMLElement>(`[data-index="${from}"]`)
   const toElement = document.querySelector<HTMLElement>(`[data-index="${to}"]`)
-  const color = fromBottle.find((item) => item !== '')
-  if (poured <= 0 || !fromElement || !toElement || color === undefined) return undefined // eslint-disable-line unicorn/no-useless-undefined
+  const color = fromBottle.find(item => item !== '')
+  if (poured <= 0 || !fromElement || !toElement || color === undefined) return undefined
 
   ensureGooFilter()
   freeze(fromElement)
   freeze(toElement)
   const fillStyle = resolveColor(color)
-  const sourceBands = getFilled(fromBottle).reverse().map((item) => resolveColor(item))
-  const targetBase = getFilled(toBottle).reverse().map((item) => resolveColor(item))
+  const sourceBands = getFilled(fromBottle)
+    .toReversed()
+    .map(item => resolveColor(item))
+  const targetBase = getFilled(toBottle)
+    .toReversed()
+    .map(item => resolveColor(item))
   const targetBands = [...targetBase, ...Array.from({ length: poured }, () => fillStyle)]
   const sourceVolume = getVolume(sourceBands.length)
   const sourceEndVolume = getVolume(sourceBands.length - poured)
@@ -461,7 +477,7 @@ export function animatePour (options: PourOptions) {
       bubble.x += Math.sin(bubble.phase) * 12 * delta
       bubble.y += bubble.vy * delta
     }
-    bubbles = bubbles.filter((bubble) => bubble.y > surface + surfaceWave + bubble.radius * 0.5)
+    bubbles = bubbles.filter(bubble => bubble.y > surface + surfaceWave + bubble.radius * 0.5)
 
     // sound, pitched by the fill level of the target, it follows the stream so it starts when the liquid arrives
     const soundStart = moveInDuration + fallDelay
@@ -485,12 +501,9 @@ export function animatePour (options: PourOptions) {
     }
   }
 
-  let stopAnimation: (() => void) | undefined // eslint-disable-line @typescript-eslint/init-declarations
-  const finished = new Promise<void>((resolve) => {
+  let stopAnimation: (() => void) | undefined // oxlint-disable-line @typescript-eslint/init-declarations
+  const finished = new Promise<void>(resolve => {
     let isDone = false
-    /**
-     *
-     */
     const cleanup = () => {
       if (isDone) return
       isDone = true
@@ -523,8 +536,11 @@ export function animatePour (options: PourOptions) {
     setTimeout(cleanup, duration + 3000) // in case nobody stops us or the tab is hidden
   })
 
-  return { duration, finished, /**
-                                *
-                                */
-  stop: () => { stopAnimation?.() } }
+  return {
+    duration,
+    finished,
+    stop: () => {
+      stopAnimation?.()
+    },
+  }
 }

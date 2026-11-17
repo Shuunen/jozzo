@@ -18,9 +18,17 @@ const noAnimationDuration = 300
  * Wait for the next frames to be painted (with a fallback when the tab is hidden)
  * @returns a promise resolved after two frames
  */
-async function waitForPaint () {
-  const twoFrames = new Promise<void>((resolve) => { requestAnimationFrame(() => { requestAnimationFrame(() => { resolve() }) }) })
-  const fallback = new Promise<void>((resolve) => { setTimeout(resolve, paintFallbackMs) })
+async function waitForPaint() {
+  const twoFrames = new Promise<void>(resolve => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        resolve()
+      })
+    })
+  })
+  const fallback = new Promise<void>(resolve => {
+    setTimeout(resolve, paintFallbackMs)
+  })
   await Promise.race([twoFrames, fallback])
 }
 
@@ -29,7 +37,7 @@ async function waitForPaint () {
  * @param index The index of the target bottle
  * @param setPouringInfo State setter for pouring info
  */
-async function startPour (index: number, setPouringInfo: (info: PouringInfo) => void) {
+async function startPour(index: number, setPouringInfo: (info: PouringInfo) => void) {
   const from = machine.selected
   const fromBottle = machine.bottles[from]
   const toBottle = machine.bottles[index]
@@ -49,7 +57,7 @@ async function startPour (index: number, setPouringInfo: (info: PouringInfo) => 
  * @param index The index of the bottle
  * @param setPouringInfo State setter for pouring info
  */
-async function handleBottleSelection (index: number, setPouringInfo: (info: PouringInfo) => void) {
+async function handleBottleSelection(index: number, setPouringInfo: (info: PouringInfo) => void) {
   if (machine.state === 'pouring') return
   if (index === machine.selected) {
     machine.deselect()
@@ -67,7 +75,7 @@ async function handleBottleSelection (index: number, setPouringInfo: (info: Pour
  * @param event The click event
  * @param setPouringInfo State setter for pouring info
  */
-function handleBottleClick (event: Event, setPouringInfo: (info: PouringInfo) => void) {
+function handleBottleClick(event: Event, setPouringInfo: (info: PouringInfo) => void) {
   const element = event.target instanceof HTMLElement ? event.target : undefined
   if (!element) return
   const index = Number(element.dataset.index)
@@ -81,7 +89,7 @@ function handleBottleClick (event: Event, setPouringInfo: (info: PouringInfo) =>
  * @param properties.state Current game state
  * @returns JSX.Element
  */
-export function BottleGrid (properties: { state: typeof machine['state'] }) {
+export function BottleGrid(properties: { state: (typeof machine)['state'] }) {
   const { state } = properties
   const [pouringInfo, setPouringInfo] = useState<PouringInfo>()
   const hasWon = state === 'win'
@@ -92,26 +100,21 @@ export function BottleGrid (properties: { state: typeof machine['state'] }) {
 
   return (
     <div className="my-6 flex justify-center">
-      {hasWon && <Confetti mode='fall' />}
-      <div className="grid grid-cols-3 gap-x-12 gap-y-6" onClick={event => handleBottleClick(event, setPouringInfo)}>
+      {hasWon && <Confetti mode="fall" />}
+      <div
+        className="grid grid-cols-3 gap-x-12 gap-y-6"
+        onClick={event => {
+          handleBottleClick(event, setPouringInfo)
+        }}
+      >
         {machine.bottles.map((bottle, index) => {
           const isPouring = isPouringState && pouringInfo.from === index
           const isPourTarget = isPouringState && pouringInfo.to === index
-          return (
-            <AppBottle
-              colors={bottle}
-              index={index}
-              isLiquidHidden={(isPouring || isPourTarget) && isLiquidHidden}
-              isPouring={isPouring}
-              isPourTarget={isPourTarget}
-              isSelected={machine.selected === index}
-              key={index}
-            />
-          )
+          return <AppBottle colors={bottle} index={index} isLiquidHidden={(isPouring || isPourTarget) && isLiquidHidden} isPouring={isPouring} isPourTarget={isPourTarget} isSelected={machine.selected === index} key={index} />
         })}
       </div>
-      {hasWon && <Confetti mode='boom' />}
-      {hasWon && hat({ className: tw('absolute h-64 hat-win-animation') }) /* eslint-disable-line unicorn/no-keyword-prefix */}
+      {hasWon && <Confetti mode="boom" />}
+      {hasWon && hat({ className: tw('hat-win-animation absolute h-64') })}
     </div>
   )
 }

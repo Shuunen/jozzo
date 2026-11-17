@@ -1,7 +1,7 @@
-import { expect, it } from 'vitest'
 import { getNextColor } from './colors.utils'
 
-it('getNextColor A default, no transparent', () => {
+test('getNextColor A default, no transparent', () => {
+  expect.hasAssertions()
   expect(getNextColor()).toMatchInlineSnapshot(`"blue"`)
   expect(getNextColor()).toMatchInlineSnapshot(`"green"`)
   expect(getNextColor()).toMatchInlineSnapshot(`"red"`)
@@ -12,7 +12,8 @@ it('getNextColor A default, no transparent', () => {
   expect(getNextColor()).toMatchInlineSnapshot(`"yellow"`)
 })
 
-it('getNextColor B transparent', () => {
+test('getNextColor B transparent', () => {
+  expect.hasAssertions()
   expect(getNextColor(true)).toMatchInlineSnapshot(`""`)
   expect(getNextColor(true)).toMatchInlineSnapshot(`"blue"`)
   expect(getNextColor(true)).toMatchInlineSnapshot(`"green"`)

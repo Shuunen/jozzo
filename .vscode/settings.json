@@ -1,11 +1,17 @@
 {
-  "[javascript][javascriptreact][typescript][typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "cSpell.words": [
-    "jozzo",
-    "Jozzo",
-    "preact",
-    "svgr"
-  ]
+  "cSpell.words": ["jozzo", "Jozzo", "preact", "svgr"],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#3d1360",
+    "activityBar.foreground": "#f9fafb",
+    "activityBarBadge.background": "#591c87",
+    "activityBarBadge.foreground": "#f9fafb",
+    "statusBar.background": "#3d1360",
+    "statusBar.foreground": "#f9fafbcc",
+    "statusBar.inactiveBackground": "#290c42",
+    "tab.activeBorderTop": "#591c87",
+    "titleBar.activeBackground": "#591c87",
+    "titleBar.activeForeground": "#f9fafb",
+    "titleBar.inactiveBackground": "#3d1360",
+    "titleBar.inactiveForeground": "#f9fafbaa"
+  }
 }
