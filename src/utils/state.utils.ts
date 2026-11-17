@@ -3,6 +3,9 @@ import { getBottles, pour } from './bottle.utils'
 import type { Bottle } from './colors.utils'
 import { logger } from './logger.utils'
 
+/** Duration of the pouring animation in ms, keep in sync with --pour-duration usage */
+export const pouringDuration = 1800
+
 type State = 'initial' | 'loose' | 'pouring' | 'ready' | 'selected' | 'win'
 
 type Context = { bottles: Bottle[]; selected: number; state: State }
@@ -73,13 +76,14 @@ export class Machine {
   /**
    * Pour the selected bottle into another bottle
    * @param index the index of the bottle to pour into
+   * @param duration how long the pouring lasts in ms
    */
   // eslint-disable-next-line max-statements
-  public async pour(index: number) {
+  public async pour(index: number, duration = pouringDuration) {
     this.#transition('selected', 'pouring')
     const { bottles, selected } = this.#context
     logger.info(`pouring bottle ${selected} into bottle ${index}`)
-    await sleep(600) // eslint-disable-line @typescript-eslint/no-magic-numbers
+    await sleep(duration)
     const from = bottles[selected]
     const to = bottles[index]
     /* c8 ignore next 2 */

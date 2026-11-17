@@ -14,29 +14,34 @@
   @apply bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500;
 }
 
-.bottle-pouring {
-  z-index: 10;
-  animation: bottle-pour-move 0.6s cubic-bezier(0.4,0,0.2,1) forwards;
+/* glass bottle: the shadow follows the shape of the glass */
+.bottle {
+  filter: drop-shadow(0 6px 5px rgb(107 33 168 / 0.6));
 }
 
-@keyframes bottle-pour-move {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-  30% {
-    transform: translateY(-60px) rotate(-30deg);
-  }
-  70% {
-    transform: translateY(-60px) rotate(-30deg);
-  }
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
+.bottle:hover {
+  filter: drop-shadow(0 6px 7px rgb(168 85 247 / 0.85));
+}
+
+.bottle-selected,
+.bottle-selected:hover {
+  filter: drop-shadow(0 0 9px rgb(233 213 255 / 0.9));
+}
+
+/* light catching the surface of each layer of liquid, the pouring canvas draws the same line (see drawLiquid) */
+.liquid-layer {
+  box-shadow: inset 0 1.5px 0 rgb(255 255 255 / 0.35);
+}
+
+/* the pouring bottle is moved by javascript each frame (see pour-animation.utils.ts), no transition allowed.
+   Both are above the pouring canvases (z-index 40 and 41), so the glass and its reflections stay in front of the liquid */
+.bottle-pouring {
+  z-index: 60;
+  transition: none;
 }
 
 .bottle-pour-target {
-  z-index: 9;
-  filter: drop-shadow(0 0 8px #facc15);
+  z-index: 59;
 }
 
 .hat-win-animation {
