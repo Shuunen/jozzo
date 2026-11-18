@@ -1,17 +1,17 @@
 {
   "cSpell.words": ["jozzo", "Jozzo", "preact", "svgr"],
   "workbench.colorCustomizations": {
-    "activityBar.background": "#3d1360",
+    "activityBar.background": "#2c0e43",
     "activityBar.foreground": "#f9fafb",
     "activityBarBadge.background": "#591c87",
     "activityBarBadge.foreground": "#f9fafb",
-    "statusBar.background": "#3d1360",
+    "statusBar.background": "#2c0e43",
     "statusBar.foreground": "#f9fafbcc",
-    "statusBar.inactiveBackground": "#290c42",
+    "statusBar.inactiveBackground": "#1d092c",
     "tab.activeBorderTop": "#591c87",
     "titleBar.activeBackground": "#591c87",
     "titleBar.activeForeground": "#f9fafb",
-    "titleBar.inactiveBackground": "#3d1360",
+    "titleBar.inactiveBackground": "#2c0e43",
     "titleBar.inactiveForeground": "#f9fafbaa"
   }
 }
