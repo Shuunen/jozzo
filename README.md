@@ -19,7 +19,9 @@ Further development will be done there 🚀
 
 [Try it online](https://jozzo.netlify.app)
 
-![demo](docs/demo.gif)
+[▶ Watch the trailer on YouTube](https://youtu.be/o0b9cZf_VCc)
+
+[![demo](docs/demo.gif)](https://youtu.be/o0b9cZf_VCc)
 
 [Hosting graciously provided by Netlify](https://www.netlify.app)
 
